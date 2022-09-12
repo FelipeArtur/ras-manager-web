@@ -1,6 +1,6 @@
 .login-input {
     border-radius: 14px;
-    border-color: purple;
+    border-color: #721764;
     border-width: 1px;
     margin: 10px;
     padding-left: 7px;
@@ -8,6 +8,16 @@
     padding-bottom: 4px;
     width: 75%;
     height: 20%;
-    color: purple;
+    color: #721764;
     font-weight: 400;
+}
+
+.login-input::placeholder {
+    color: #c46cb6;
+}
+
+.login-input:hover {
+    border-radius: 14px;
+    border-color: purple;
+    background-color: rgb(235, 235, 235);
 }
