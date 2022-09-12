@@ -14,12 +14,13 @@ class Login extends React.Component {
                 <>
                     <img src={logo} alt="RAS Logo" className="ras-logo"/>
                     <div className="input-column">
-                        <LoginInput type="text" placeholder="Usuário"/>
-                        <LoginInput type="password" placeholder="Senha"/>
+                        <LoginInput type="text" placeholder="Usuário" maxLength={35}/>
+                        <LoginInput type="password" placeholder="Senha" maxLength={20}/>
                     </div>
                     <LoginButton/>
                 </>
             </div>
+            
         );
     }
 }

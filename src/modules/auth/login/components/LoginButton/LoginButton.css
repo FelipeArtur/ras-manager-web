@@ -8,3 +8,9 @@
     text-align: center;
     
 }
+
+.login-btn-text {
+    color: white;
+    font-size: 90%;
+    text-decoration-line: none;
+}
