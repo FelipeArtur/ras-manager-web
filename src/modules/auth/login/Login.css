@@ -1,0 +1,21 @@
+.white-container {
+    height: 300px;
+    width: 35%;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.input-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.ras-logo {
+    height: 25%;
+    width: 50%;
+}
