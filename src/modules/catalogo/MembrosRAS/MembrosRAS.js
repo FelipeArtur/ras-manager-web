@@ -28,41 +28,6 @@ export default class MembrosRAS extends React.Component {
                 class="Engenharia de Computação"
                 email="fulanodetal@gmail.com"
                 />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
                 </>
             }
             >
