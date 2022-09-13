@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './modules/auth/login/Login';
 import Catalogo from './modules/catalogo/Catalogo';
+import Eventos from './modules/catalogo/Eventos/Eventos';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
 
 export default function AppRoutes () {
@@ -10,6 +11,7 @@ export default function AppRoutes () {
             <Route exact path="/" element={<Login/>}/>
             <Route exact path="/catalogo" element={<Catalogo/>}/>
             <Route exact path="/membros" element={<MembrosRAS/>}/>
+            <Route exact path="/eventos" element={<Eventos/>}/>
           </Routes>
         </BrowserRouter>
     );
