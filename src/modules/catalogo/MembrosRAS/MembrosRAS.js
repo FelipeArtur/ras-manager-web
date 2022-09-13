@@ -13,10 +13,56 @@ export default class MembrosRAS extends React.Component {
             }
             children={
                 <>
-                <MembroCard/>
-                <MembroCard/>
-                <MembroCard/>
-                <MembroCard/>
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
+                <MembroCard
+                name="Fulano de Tal da Silva"
+                class="Engenharia de Computação"
+                email="fulanodetal@gmail.com"
+                />
                 </>
             }
             >
