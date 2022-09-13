@@ -1,15 +1,16 @@
-import { Switch, Route } from 'react-router-dom';
-import Login from './login/Login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './modules/auth/login/Login';
+import Catalogo from './modules/catalogo/Catalogo';
+import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
 
-export default () => {
+export default function AppRoutes () {
     return (
-        <Switch>
-            <Route exact path="/">
-                <Login/>
-            </Route>
-            <Route exact path="/home">
-                <Home/>
-            </Route>
-        </Switch>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Login/>}/>
+            <Route exact path="/catalogo" element={<Catalogo/>}/>
+            <Route exact path="/membros" element={<MembrosRAS/>}/>
+          </Routes>
+        </BrowserRouter>
     );
 }

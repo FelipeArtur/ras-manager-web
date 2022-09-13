@@ -7,7 +7,7 @@ class LoginButton extends React.Component {
     render() {
         return(
             <button className="login-btn">
-                <Link to="/home" className="login-btn-text">ENTRAR</Link>
+                <Link to="/membros" className="login-btn-text">ENTRAR</Link>
             </button>
         );
     }
