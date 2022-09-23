@@ -1,7 +1,7 @@
 import React from "react";
 import "./MembrosRAS.css";
 
-import BaseCatalogo from "../components/BaseCatalogo"
+import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo"
 import MembroCard from "./components/MembroCard";
 
 
