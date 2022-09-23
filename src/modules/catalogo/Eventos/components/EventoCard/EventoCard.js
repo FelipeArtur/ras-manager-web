@@ -10,11 +10,11 @@ export default class EventoCard extends React.Component {
             <div className="ras-event-card">
                 <div className="event-title">{this.props.title}</div>
                 <div className="flex-row">
-                    <img src={calendar} className="icon"/>
+                    <img src={calendar} alt="Ícone calendário" className="icon"/>
                     <div className="event-date">{this.props.date}</div>
                 </div>
                 <div className="flex-row">
-                <img src={place} className="icon"/>
+                <img src={place} alt="Ícone local" className="icon"/>
                     <div className="event-local">{this.props.local}</div>
                 </div>
             </div>

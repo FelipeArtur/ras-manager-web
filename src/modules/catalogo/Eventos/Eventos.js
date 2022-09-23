@@ -1,5 +1,5 @@
 import React from "react"
-import BaseCatalogo from "../components/BaseCatalogo";
+import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo";
 import EventoCard from "./components/EventoCard/EventoCard";
 
 export default class Eventos extends React.Component {
