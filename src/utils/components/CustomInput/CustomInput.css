@@ -1,4 +1,4 @@
-.login-input {
+.custom-input {
     border-radius: 14px;
     border-color: #721764;
     border-width: 1px;
@@ -12,11 +12,11 @@
     font-weight: 400;
 }
 
-.login-input::placeholder {
+.custom-input::placeholder {
     color: #c46cb6;
 }
 
-.login-input:hover {
+.custom-input:hover {
     border-radius: 14px;
     border-color: purple;
     background-color: rgb(235, 235, 235);

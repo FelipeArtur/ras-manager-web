@@ -1,11 +1,11 @@
 import React from "react";
 
-import LoginButton  from "./components/LoginButton/LoginButton";
-import LoginInput  from "./components/LoginInput/LoginInput";
+import CustomInput  from "./../../../utils/components/CustomInput/CustomInput";
 
 import logo from "../../../assets/logo.png";
 
 import './Login.css';
+import CustomButton from "../../../utils/components/CustomButton/CustomButton";
 
 class Login extends React.Component {
     render() {
@@ -14,10 +14,10 @@ class Login extends React.Component {
                 <>
                     <img src={logo} alt="RAS Logo" className="ras-logo"/>
                     <div className="input-column">
-                        <LoginInput type="text" placeholder="Usuário" maxLength={35}/>
-                        <LoginInput type="password" placeholder="Senha" maxLength={20}/>
+                        <CustomInput id="login-input-user" type="text" placeholder="Usuário" maxLength={35}/>
+                        <CustomInput id="login-input-password" type="password" placeholder="Senha" maxLength={20}/>
                     </div>
-                    <LoginButton/>
+                    <CustomButton navTo="/catalogo" text="ENTRAR"/>
                 </>
             </div>
             
