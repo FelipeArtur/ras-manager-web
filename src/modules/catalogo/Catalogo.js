@@ -10,10 +10,10 @@ export default class Catalogo extends React.Component {
     render() {
         return (
             <div className="ras-catalogo">
-                <CatalogoCard icon={person} title="Membros da RAS"/>
-                <CatalogoCard icon={person} title="Eventos"/>
-                <CatalogoCard icon={reunioes} title="Reuniões"/>
-                <CatalogoCard icon={person} title="Projetos"/>
+                <CatalogoCard path="/membros" icon={person} title="Membros da RAS"/>
+                <CatalogoCard path="/eventos" icon={person} title="Eventos"/>
+                <CatalogoCard path="/reunioes" icon={reunioes} title="Reuniões"/>
+                <CatalogoCard path="/projetos" icon={person} title="Projetos"/>
             </div>
         );
     }

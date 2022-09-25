@@ -1,12 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CatalogoCard.css";
-
 export default class CatalogoCard extends React.Component {
     render() {
         return (
-            <div className="cat-card">
+            <div id="card" className="cat-card" onClick={this.navegar}>
                 <img alt="Card Icon" src={this.props.icon} className="card-icon"/>
-                <h2 className="card-title">{this.props.title}</h2>
+                <Link className="card-title" to={this.props.path}>{this.props.title}</Link>
             </div>
         );
     }
