@@ -1,13 +1,14 @@
 import './App.css';
 import React from 'react';
-import Login from './modules/auth/login/Login';
+import AppRoutes from './Routes';
+
 
 class App extends React.Component {
   render() {
     return (
-      <div className="BaseApp">
-        <Login/>
-      </div>
+      <div className="base-app">
+        <AppRoutes/>
+        </div>
     );
   }
 }
