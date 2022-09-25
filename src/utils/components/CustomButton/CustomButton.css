@@ -1,4 +1,4 @@
-.login-btn {
+.custom-btn {
     background-color: #721764;
     color: white;
     font-weight: 600;
@@ -9,7 +9,7 @@
     
 }
 
-.login-btn-text {
+.custom-btn-text {
     color: white;
     font-size: 90%;
     text-decoration-line: none;

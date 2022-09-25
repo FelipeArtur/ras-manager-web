@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './LoginInput.css';
+import './CustomInput.css';
 
-class LoginInput extends React.Component {
+class CustomInput extends React.Component {
     render() {
         return(
-            <input className='login-input' 
+            <input className='custom-input'
             type={this.props.type}
             placeholder={this.props.placeholder}
             maxLength={this.props.maxLength}/>
@@ -13,4 +13,4 @@ class LoginInput extends React.Component {
     }
 }
 
-export default LoginInput;
+export default CustomInput;
