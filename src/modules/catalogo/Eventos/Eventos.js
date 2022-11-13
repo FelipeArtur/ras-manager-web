@@ -1,33 +1,34 @@
-import React from "react"
+import React, { useEffect, useState }  from "react"
 import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo";
 import EventoCard from "./components/EventoCard/EventoCard";
+import Axios from "axios";
 
-export default class Eventos extends React.Component {
-    render() {
+export default function Eventos() {
+
+    const [listEvents, setListEvents] = useState([]);
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/eventos").then((response) => {
+            setListEvents(response.data);
+        });
+    }, []);
+
         return (
             <BaseCatalogo title={
                 <h1>Eventos</h1>
             } children={
                 <>
-                    <EventoCard
-                        title="Palestra sobre Flutter"
-                        date="12/12/2022"
-                        local="SENAI Cimatec"
+                    {typeof listEvents != "undefined" && listEvents.map((value) => {
+                        return <EventoCard
+                        title={"" + value.DESCRICAO}
+                        date={"" + value.DT_HORA}
+                        local={"" + value.LOCALIZACAO}
                     />
-                    <EventoCard
-                        title="Palestra sobre Flutter"
-                        date="12/12/2022"
-                        local="SENAI Cimatec"
-                    />
-                    <EventoCard
-                        title="Palestra sobre Flutter"
-                        date="12/12/2022"
-                        local="SENAI Cimatec"
-                    />
+                    
+                    })}
                 </>
             }>
 
             </BaseCatalogo>
         );
-    }
 }

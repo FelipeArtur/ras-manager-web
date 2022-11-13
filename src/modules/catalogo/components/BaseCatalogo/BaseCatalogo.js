@@ -2,20 +2,18 @@ import React from "react";
 import "./BaseCatalogo.css";
 
 
-export default class BaseCatalogo extends React.Component {
-    render() {
+export default function BaseCatalogo({title, children}) {
         return (
             <div className="catalogo-ras">
                 <>
                     <div className="title-row">
-                        <h1 className="catalogo-sub-title">{this.props.title}</h1>
+                        {title}
                     </div>
                     <div className="sep-line"></div>
                     <div className="cards-view">
-                    {this.props.children}
+                    {children}
                     </div>
                 </>
             </div>
         );
-    }
 }

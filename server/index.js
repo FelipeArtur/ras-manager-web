@@ -1,29 +1,27 @@
 const express = require("express");
 
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 
 const db = mysql.createPool({
-    host: "localhost",
-    port: 3001,
-    user: "jorge",
-    password: "cimatec",
-    database: "mysql",
+    host: "127.0.0.1",
+    port: 3306,
+    user: "root",
+    password: "RASmanager@123",
+    database: "ras"
 });
 
-function printError(error) {
-    if (error != null) {
-        console.log(error.code + ": " + error.message);
-    }
-}
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 app.get("/pessoas", (req, res) => {
     let query = "SELECT * FROM PESSOA";
 
     db.query(query, (error, result) => {
-        printError(error);
+        res.json(result);
     });
 
 });
@@ -32,7 +30,7 @@ app.get("/eventos", (req, res) => {
     let query = "SELECT * FROM EVENTO";
 
     db.query(query, (error, result) => {
-        printError(error);
+        res.json(result);
     });
 
 });
@@ -41,13 +39,12 @@ app.get("/reunioes", (req, res) => {
     let query = "SELECT * FROM REUNIAO";
 
     db.query(query, (error, result) => {
-        printError(error);
+        res.json(result);
     });
 
 });
 
-app.use(cors());
-app.use(express.json());
+
 
 app.listen(3001, () => {
     console.log("rodando servidor");
