@@ -67,8 +67,8 @@ Docentes:
 - Back-End: ExpressJS - conexão direta com MySQL via `mysql2`
 - Banco de Dados: MySQL - RAS Manager
 
-`ReactJS`: Framework Front-End
-`ExpressJS`: Framework Back-End Node responsável por fornecer recursos mínimos para implementação de servidor web.
+`ReactJS`: Framework Front-End<br/>
+`ExpressJS`: Framework Back-End Node responsável por fornecer recursos mínimos para implementação de servidor web.<br/>
 `MySQL (mysql2)`: Banco de Dados relacional que interage com o ExpressJS para manipulação e integração de dados.
 
 Tecnologia | Status 
