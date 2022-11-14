@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# RAS Manager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Equipe e corpo docente do PI
 
-## Available Scripts
+Discentes (integrantes):
 
-In the project directory, you can run:
+- Amanda Rigaud
+- Felipe Ribeiro
+- Guilherme Almeida
+- Jorge Ricarte
+- Rodrigo Macêdo
 
-### `npm start`
+Docentes:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Marcio Soussa
+- Hilton Vicente
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Como acessar
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Clonando o repositório:**<br/>
+1. Clique no botão de cor verde escrito "Code"
+2. Copie a URL fornecida na aba Local > HTTPS
+3. Abra o terminal no diretório desejado e digite o comando: `git clone https://github.com/RAS-MANAGER/ras-manager-web.git`
 
-### `npm run build`
+**Executando o projeto**<br/>
+> Executando o Back-end
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*Requisitos*: 
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [MySQL](https://dev.mysql.com/downloads/installer/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Nosso script MySQL](https://docs.google.com/document/d/17Ae6wyL0NVFgF1mbksu7tVYMInyjssj7VDAuagkcBpc/edit?usp=sharing)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Caso não tenha o MySQL instalado, siga este [passo-a-passo para instalação](https://youtu.be/KYaZVqHHXpM).
+2. Após instalado o MySQL, abra o MySQL Workbench.
+3. Crie uma nova conexão (de preferência com o usuário `root`).
+4. Vá na aba `Server` e clique em `Data Import`.
+5. Em `Import from Dump Project Folder`, selecione a pasta extraída do arquivo WinRar [que você deverá fazer download aqui](https://github.com/RAS-MANAGER/assets/blob/main/Dump20221113.rar).
+6. Clique em `Load Folder Contents`. 
+7. Deixe a conexão aberta e volte para o projeto que você clonou do Github.
+8. Na pasta `server`, abra o arquivo `index.js`.
+9. Neste arquivo, da linha 7 à linha 10, altere o que for necessário baseado nas configurações de sua conexão no MySQL Workbench.
+10. Após as alterações, abra um terminal dentro do projeto e digite `cd server`
+11. Execute o comando `node index.js`
+12. Será aberta uma janela em seu navegador acessando o `localhost:3001`.
+13. Faça um teste acrescentando um caminho a essa URL. Recomendamos: `localhost:3001/pessoas`.
+14. Caso seja exibido um `json`, pode fechar apenas a janela, mas deixe o terminal aberto. Ele será importante para deixar o servidor funcionando.
 
-### `npm run eject`
+> Executando o Front-End
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+*Requisitos*:
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Abra um OUTRO terminal dentro do projeto (na raiz, **fora** da pasta **server**).
+2. Digite `npm start`
+3. Será aberta uma aba conectada ao `localhost:3000`.
+4. Não é necessário fazer login. Clique em `Entrar`.
+5. Telas conectadas ao banco de dados e funcionando: `Membros RAS`, `Eventos` e `Reuniões`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+# Especificações técnicas
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Front-End: ReactJS - NPM.
+- Back-End: ExpressJS - conexão direta com MySQL via `mysql2`
+- Banco de Dados: MySQL - RAS Manager
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`ReactJS`: Framework Front-End
+`ExpressJS`: Framework Back-End Node responsável por fornecer recursos mínimos para implementação de servidor web.
+`MySQL (mysql2)`: Banco de Dados relacional que interage com o ExpressJS para manipulação e integração de dados.
 
-### Code Splitting
+Tecnologia | Status 
+------ | ------
+ReactJS | ✔ 
+ExpressJS   | ✔ 
+MySQL   | ✔
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Acessos
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Rotas para navegação entre telas: [Routes](src/Routes.js)
+- Conexão com Banco de Dados (MySQL): [server](server/index.js)

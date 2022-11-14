@@ -1,37 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./MembrosRAS.css";
 
 import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo"
 import MembroCard from "./components/MembroCard";
+import Axios from "axios";
 
+import "../../catalogo/components/BaseCatalogo/BaseCatalogo.css";
 
-export default class MembrosRAS extends React.Component {
-    render() {
+export default function MembrosRAS() {
+
+    const [listMembers, setListMembers] = useState([]);
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/pessoas").then((response) => {
+            setListMembers(response.data);
+        });
+    }, []);
+
         return (
             <BaseCatalogo title={
-                <h1>Membros<br/>RAS</h1>
+                <h1 className="catalogo-sub-title">Membros RAS</h1>
             }
             children={
                 <>
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
+                {typeof listMembers != "undefined" && listMembers.map((value) => {
+                return <MembroCard
+                key={value.PESSOA_ID}
+                name={"" + value.NOME}
+                class={"" + value.DT_INGRESSO_CURSO}
+                email={"" + value.EMAIL}
                 />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
-                <MembroCard
-                name="Fulano de Tal da Silva"
-                class="Engenharia de Computação"
-                email="fulanodetal@gmail.com"
-                />
+                })}
                 </>
             }
             >
             </BaseCatalogo>
         );
-    }
 }
