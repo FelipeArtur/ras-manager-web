@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import CustomInput  from "./../../../utils/components/CustomInput/CustomInput";
-
+import Axios from 'axios';
 import logo from "../../../assets/logo.png";
 
 
@@ -10,18 +10,37 @@ import CustomButton from "../../../utils/components/CustomButton/CustomButton";
 
 export default function Login() {
 
-    const [values, setValues] = useState();
+    const [pessoas, setPessoas] = useState([]);
 
-    const handleChangeValues = (value) => {
-        setValues((prevValue) => ({
-            ...prevValue,
-            [value.target.user]: value.target.value,
-            [value.target.password]: value.target.password,
-        }));
-    }
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleClickBtn = () => {
-        console.log(values);
+        console.log("CLICOU");
+        Axios.get("http://localhost:3001/pessoas").then((response) => {
+            setPessoas(response.data);
+
+        });
+        let person = pessoas.filter((p) => {
+            if (p.EMAIL === email) {
+                return p;
+            }
+            return p;
+        }).at(0);
+        if (person.SENHA === password) {
+            // NAVEGAR PRA PRÓXIMA PÁGINA
+            console.log("FOI CARALHO");
+        }
+    }
+
+    function handleChangeEmail(ev) {
+        console.log(ev.target.value);
+        setEmail(ev.target.value);
+    }
+
+    function handleChangePassword(ev) {
+        console.log(ev.target.value);
+        setPassword(ev.target.value);
     }
 
     return (
@@ -30,18 +49,18 @@ export default function Login() {
                     <img src={logo} alt="RAS Logo" className="ras-logo"/>
                     <div className="input-column">
                         <CustomInput 
-                        className="login-input-user" 
+                        id="login-input-user" 
                         type="text" 
                         placeholder="Usuário" 
                         maxLength={35}
-                        onChange={handleChangeValues}
+                        onChange={(e) => handleChangeEmail(e)}
                         />
                         <CustomInput 
                         id="login-input-password" 
                         type="password" 
                         placeholder="Senha" 
                         maxLength={20}
-                        onChange={handleChangeValues}
+                        onChange={(e) => handleChangePassword(e)}
                         />
                     </div>
                     <CustomButton 
