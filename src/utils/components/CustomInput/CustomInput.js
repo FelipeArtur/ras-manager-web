@@ -7,7 +7,7 @@ class CustomInput extends React.Component {
         return(
             <input className='custom-input'
             type={this.props.type}
-            onChange={this.onChange}
+            onChange={this.props.onChange}
             placeholder={this.props.placeholder}
             maxLength={this.props.maxLength}/>
         );

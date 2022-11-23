@@ -4,7 +4,6 @@ import CustomInput  from "./../../../utils/components/CustomInput/CustomInput";
 import Axios from 'axios';
 import logo from "../../../assets/logo.png";
 
-
 import './Login.css';
 import CustomButton from "../../../utils/components/CustomButton/CustomButton";
 
@@ -15,33 +14,19 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleClickBtn = () => {
+    function handleClickBtn() {
         console.log("CLICOU");
-        Axios.get("http://localhost:3001/pessoas").then((response) => {
-            setPessoas(response.data);
-
-        });
-        let person = pessoas.filter((p) => {
-            if (p.EMAIL === email) {
-                return p;
-            }
-            return p;
-        }).at(0);
-        if (person.SENHA === password) {
-            // NAVEGAR PRA PRÓXIMA PÁGINA
-            console.log("FOI CARALHO");
-        }
     }
 
     function handleChangeEmail(ev) {
-        console.log(ev.target.value);
         setEmail(ev.target.value);
     }
 
     function handleChangePassword(ev) {
-        console.log(ev.target.value);
         setPassword(ev.target.value);
     }
+
+    let route = "/catalogo";
 
     return (
             <>
@@ -64,8 +49,24 @@ export default function Login() {
                         />
                     </div>
                     <CustomButton 
-                    onClick={()=> handleClickBtn}
-                    navTo="/catalogo" 
+                    onClick={()=> {
+                Axios.get("http://localhost:3001/auth/" + email).then((response) => {
+                    console.log(response.data);
+                    setPessoas(response.data);
+
+                }).finally(() => {
+                    let person = pessoas.at(0);
+                    if (person.SENHA === password) {
+                        // NAVEGAR PRA PRÓXIMA PÁGINA
+                        route="/catalogo";
+                        console.log("Usuário autenticado!");
+                    } else {
+                        console.log("Autenticação falhou :(");
+                    }
+                });
+        return handleClickBtn;
+                    }}
+                    navTo={route} 
                     text="ENTRAR"
                     />
                 </div> 
