@@ -99,7 +99,16 @@ app.get("/reuniao/:id", (req, res) => {
 
 });
 
+//#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
+app.get("/pessoa/cadastrar/:nome/:email/:senha", (req, res) => {
+    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20T03:00:00.000Z', '2022-09-20T03:00:00.000Z', '" + req.params.email + "', '00000000001', '" + req.params.senha + "', '71999999998', 'ATIVO');";
+
+    db.execute(query, (error, result) => {
+        console.log(result);
+        res.json(result);
+    });
+})
 
 app.listen(3001, () => {
     console.log("RUNNING SERVER AT PORT: 3001");
