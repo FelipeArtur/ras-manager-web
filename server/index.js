@@ -110,6 +110,8 @@ app.get("/pessoa/cadastrar/:nome/:email/:senha", (req, res) => {
     });
 })
 
-app.listen(3001, () => {
-    console.log("RUNNING SERVER AT PORT: 3001");
+const _serverPort = 3001;
+
+app.listen(_serverPort, () => {
+    console.log("RUNNING SERVER AT PORT: " + _serverPort);
 })
