@@ -19,7 +19,7 @@ export default function Projetos() {
 
 
         return (
-            <BaseCatalogo title={
+            <BaseCatalogo addBtnPath={""} title={
                 <h1 className="catalogo-sub-title">Projetos RAS</h1>
             }
             children={
