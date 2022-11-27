@@ -18,7 +18,7 @@ export default function MembrosRAS() {
     }, []);
 
         return (
-            <BaseCatalogo title={
+            <BaseCatalogo addBtnPath={""} title={
                 <h1 className="catalogo-sub-title">Membros RAS</h1>
             }
             children={

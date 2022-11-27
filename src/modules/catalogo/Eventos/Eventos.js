@@ -14,8 +14,8 @@ export default function Eventos() {
     }, []);
 
         return (
-            <BaseCatalogo title={
-                <h1>Eventos</h1>
+            <BaseCatalogo addBtnPath={""} title={
+                <h1 className="catalogo-sub-title">Eventos</h1>
             } children={
                 <>
                     {typeof listEvents != "undefined" && listEvents.map((value) => {

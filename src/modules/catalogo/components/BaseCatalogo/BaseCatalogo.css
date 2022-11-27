@@ -15,9 +15,10 @@
 .title-row {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    align-content: flex-start;
+    align-items: center;
+    align-content: space-around;
     align-self: center;
+    width: 100%;
 }
 
 .sep-line {
