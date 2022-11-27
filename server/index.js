@@ -99,6 +99,30 @@ app.get("/reuniao/:id", (req, res) => {
 
 });
 
+///
+/// Data retrived: All [Projeto] table rows
+///
+app.get("/projetos", (req, res) => {
+    let query = "SELECT * FROM PROJETO";
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+///
+/// It response by parsing [Projeto] column {PROJETO_ID} and retrives respective data
+///
+app.get("/projeto/:id", (req, res) => {
+    let query = "SELECT * FROM PROJETO WHERE PROJETO_ID = " + "'" + (req.params.id) + "'";
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
 app.post("/pessoas/cadastrar/:nome/:email/:senha", (req, res) => {

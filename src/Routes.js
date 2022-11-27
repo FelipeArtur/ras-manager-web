@@ -5,6 +5,7 @@ import Habilidades from './modules/auth/register/Habilidades/Habilidades';
 import Catalogo from './modules/catalogo/Catalogo';
 import Eventos from './modules/catalogo/Eventos/Eventos';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
+import Projetos from './modules/catalogo/Projetos/Projetos';
 import Reunioes from './modules/catalogo/Reunioes/Reunioes';
 
 export default function AppRoutes () {
@@ -17,6 +18,7 @@ export default function AppRoutes () {
             <Route exact path="/membros" element={<MembrosRAS/>}/>
             <Route exact path="/eventos" element={<Eventos/>}/>
             <Route exact path="/reunioes" element={<Reunioes/>}/>
+            <Route exact path="/projetos" element={<Projetos/>}/>
           </Routes>
         </BrowserRouter>
     );
