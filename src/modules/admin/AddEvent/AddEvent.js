@@ -10,6 +10,7 @@ export default function AddEvent() {
     const [descricao, setDescricao] = useState("");
     const [responsavel, setResponsavel] = useState("");
     const [palestrante, setPalestrante] = useState("");
+    const [localizacao, setLocalizacao] = useState("");
 
     function handleChangeInput(ev, changeFunction) {
         changeFunction(ev.target.value);
@@ -36,14 +37,18 @@ export default function AddEvent() {
                 maxLength={35}
                 onChange={(e) => handleChangeInput(e, setPalestrante)}
             />
+            <CustomInput
+                type="text"
+                placeholder="Localização"
+                maxLength={35}
+                onChange={(e) => handleChangeInput(e, setLocalizacao)}
+            />
             <button className="back-to-event-btn">
                 <Link className="btn-text" to="/eventos">VOLTAR</Link>
                 </button>
             <button className="add-btn"
                 onClick={() => {
-                    Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante).then((response) => {
-                        console.log("htpps://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante);
-                        console.log(response.data);
+                    Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante + "/" + localizacao).then((response) => {
                     }).finally(() => {
                         // setDescricao("");
                         // setPalestrante("");

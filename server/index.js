@@ -138,8 +138,8 @@ app.post("/pessoas/cadastrar/:nome/:email/:senha", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE EVENTO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante", (req, res) => {
-    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', 'SENAI CIMATEC', '" + req.params.palestrante + "');";
+app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao", (req, res) => {
+    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', '" + req.params.localizacao + "', '" + req.params.palestrante + "');";
 
     console.log(query);
 
