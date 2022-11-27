@@ -26,7 +26,7 @@ export default function AddEvent() {
             />
             <CustomInput
                 type="text"
-                placeholder="Responsável"
+                placeholder="ID do responsável"
                 maxLength={35}
                 onChange={(e) => handleChangeInput(e, setResponsavel)}
             />
