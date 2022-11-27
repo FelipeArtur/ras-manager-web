@@ -126,7 +126,20 @@ app.get("/projeto/:id", (req, res) => {
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
 app.post("/pessoas/cadastrar/:nome/:email/:senha", (req, res) => {
-    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20T03:00:00.000Z', '2022-09-20T03:00:00.000Z', '" + req.params.email + "', '00000000001', '" + req.params.senha + "', '71999999998', 'ATIVO');";
+    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '00000000001', '" + req.params.senha + "', '71999999998', 'ATIVO');";
+
+    console.log(query);
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ CADASTRO DE EVENTO ] //#//#//#//#//#//#//#//#//#
+
+app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante", (req, res) => {
+    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', 'SENAI CIMATEC', '" + req.params.palestrante + "');";
 
     console.log(query);
 
