@@ -3,8 +3,8 @@ import "./AddButton.css";
 
 export default function AddButton({action, to}) {
     return (
-        <button className="add-btn">
-            <Link className="icon-decor" to={to}>{"+"}</Link>
+        <button className="add-data-btn">
+            <Link className="add-decor" to={to}>{"+"}</Link>
         </button>
     );
 }

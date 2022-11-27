@@ -14,7 +14,7 @@ export default function Eventos() {
     }, []);
 
         return (
-            <BaseCatalogo addBtnPath={""} title={
+            <BaseCatalogo addBtnPath={"/eventos/adicionar"} title={
                 <h1 className="catalogo-sub-title">Eventos</h1>
             } children={
                 <>
