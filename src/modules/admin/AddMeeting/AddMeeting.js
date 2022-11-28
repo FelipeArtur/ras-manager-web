@@ -15,6 +15,17 @@ export default function AddMeeting() {
 
     const [responsavel, selectedResonsavel] = useState("");
 
+    const [responsavelID, setResponsavelID] = useState(0);
+
+    const [descricao, setDescricao] = useState("");
+    const [localizacao, setLocalizacao] = useState("");
+    const [dataHora, setDataHora] = useState("");
+    const [ata, setAta] = useState("");
+
+    function handleChange(e, changeFunction) {
+        changeFunction(e.target.value);
+    }
+
     useEffect(() => {
         Axios.get("http://localhost:3001/pessoas").then((response) => {
             setPessoasDropdown(response.data);
@@ -31,18 +42,22 @@ export default function AddMeeting() {
                 <CustomImput
                     placeholder={"Descrição"}
                     maxLength={30}
+                    onChange={(e) => handleChange(e, setDescricao)}
                 />
                 <CustomImput
                     placeholder={"Localização"}
                     maxLength={30}
+                    onChange={(e) => handleChange(e, setLocalizacao)}
                 />
                 <CustomImput
                     placeholder={"Data / Hora"}
                     maxLength={30}
+                    onChange={(e) => handleChange(e, setDataHora)}
                 />
                 <CustomImput
                     placeholder={"ATA"}
                     maxLength={30}
+                    onChange={(e) => handleChange(e, setAta)}
                 />
             </div>
             <button className="responsavel-dropdown"  onClick={handleButton}>
@@ -51,9 +66,10 @@ export default function AddMeeting() {
             <div className="responsaveis-overflow">
             {show === false ? <div className="dropdown-invisible"/> : 
             (typeof pessoasDropdown != "undefined" && pessoasDropdown.map((value) => {
-                return <DropdownTile nomePessoa={value.NOME}
+                return <DropdownTile key={value.PESSOA_ID} nomePessoa={value.NOME}
                     onClick={() => {
                         selectedResonsavel(value.NOME);
+                        setResponsavelID(value.PESSOA_ID);
                         handleButton();
                     }}
                 />
@@ -61,9 +77,11 @@ export default function AddMeeting() {
             }
             </div>
             {responsavel !== "" ? <h3 className="responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
-            <button>Salvar</button>
-            <button>
-                <Link to={"/eventos"}>Criar Evento</Link>
+            <button className="criar-reuniao-btn" onClick={() => {
+                Axios.post("http://localhost:3001/reuniao/adicionar/" + descricao + "/" + localizacao + "/" + dataHora + "/" + responsavelID + "/" + ata);
+            }}>CRIAR REUNIÃO</button>
+            <button className="back-to-meet-btn">
+                <Link to={"/reunioes"} className="back-to-meeting-btn-txt">VOLTAR</Link>
             </button>
         </div>
     );

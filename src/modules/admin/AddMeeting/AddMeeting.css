@@ -1,6 +1,6 @@
 .add-meeting-main-view {
     display: flex;
-    height: 70%;
+    height: 75%;
     width: 100%;
     align-items: center;
     align-content: center;
@@ -54,4 +54,26 @@
     color: white;
     font-size: 70%;
     margin-top: 2%;
+}
+
+.criar-reuniao-btn {
+    border-style: none;
+    background-color: red;
+    color: white;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.back-to-meeting-btn-txt {
+    color: white;
+    text-decoration-line: none;
+    border-style: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.back-to-meet-btn {
+    background-color: transparent;
+    
 }
