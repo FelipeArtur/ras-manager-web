@@ -41,6 +41,15 @@ app.get("/pessoa/:id", (req, res) => {
     });
 });
 
+app.get("/pessoa-last-registered", (req, res) => {
+    let query = "SELECT * FROM PESSOA ORDER BY PESSOA_ID DESC LIMIT 1";
+
+    
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
 ///
 /// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
 ///
@@ -123,10 +132,64 @@ app.get("/projeto/:id", (req, res) => {
 
 });
 
+app.get("/skill", (req, res) => {
+    // let query = "SELECT * FROM SKILL WHERE TIPO_SKILL = " + "'" + (req.params.tpskill) + "'";
+
+    let query = "SELECT * FROM SKILL";
+
+    console.log(query);
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+///
+/// It response by parsing [Projeto] column {PROJETO_ID} and retrives respective data
+///
+app.get("/skill/:id", (req, res) => {
+    let query = "SELECT * FROM SKILL WHERE SKILL_ID = " + "'" + (req.params.id) + "'";
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+
+app.get("/skills/:tipo", (req, res) => {
+    let query = "SELECT * FROM SKILL WHERE TIPO_SKILL = " + "'" + (req.params.tipo) + "'";
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+
+app.post("/membro/skill/adiciona/:skid/:membroid", (req, res) => {
+    let query = "INSERT INTO SKILL_PESSOA VALUES (null, "  + req.params.skid + ", " + req.params.membroid + ")";
+    console.log(query);
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
+    let query = "DELETE FROM SKILL_PESSOA WHERE SKILL_ID = " + req.params.skid + " and PESSOA_ID = " + req.params.membroid;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/pessoas/cadastrar/:nome/:email/:senha", (req, res) => {
-    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '00000000001', '" + req.params.senha + "', '71999999998', 'ATIVO');";
+app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
+    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '" + req.params.cpf + "', '" + req.params.senha + "', '"  + req.params.telefone + "', 'ATIVO');";
 
     console.log(query);
 

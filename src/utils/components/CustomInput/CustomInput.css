@@ -16,6 +16,14 @@
     color: #c46cb6;
 }
 
+.custom-input::content {
+    color: #c46cb6;
+}
+
+.custom-input::marker {
+    color: #c46cb6;
+}
+
 .custom-input:hover {
     border-radius: 14px;
     border-color: purple;
