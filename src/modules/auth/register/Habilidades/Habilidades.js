@@ -41,7 +41,6 @@ export default function Habilidades() {
     return(
         <>
             <div className="white-container">
-                <h1 className="skills-title">QUAIS AS HABILIDADES DE {(pessoaLast[0].NOME).toUpperCase()}?</h1>
                 <div className="grid-row">
                     <div className="grid-row-hard">
                         <h3 className="habilidade-title-text">Habilidades (Hard Skills)</h3>
