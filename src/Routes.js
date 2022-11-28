@@ -15,7 +15,7 @@ export default function AppRoutes () {
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Login/>}/>
-            <Route exact path="/cadastro-habilidades" element={<Habilidades/>}/>
+            <Route exact path="/cadastro/habilidades" element={<Habilidades/>}/>
             <Route exact path="/catalogo" element={<Catalogo/>}/>
             <Route exact path="/membros" element={<MembrosRAS/>}/>
             <Route exact path="/membros/cadastrar" element={<AddMember/>}/>

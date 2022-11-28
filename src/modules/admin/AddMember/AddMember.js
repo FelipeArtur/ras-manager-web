@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import CustomInput from "../../../utils/components/CustomInput/CustomInput";
 
 import "./AddMember.css";
@@ -60,7 +61,11 @@ export default function AddMember() {
                         ///
                     });
                 }}
-            >PRÓXIMO</button>
+            >SALVAR INFORMAÇÕES PESSOAIS</button>
+
+            <button>
+                <Link to={"/cadastro/habilidades"}>PRÓXIMO</Link>
+            </button>
         </div>
     );
 }
