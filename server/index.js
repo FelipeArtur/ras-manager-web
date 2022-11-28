@@ -133,8 +133,6 @@ app.get("/projeto/:id", (req, res) => {
 });
 
 app.get("/skill", (req, res) => {
-    // let query = "SELECT * FROM SKILL WHERE TIPO_SKILL = " + "'" + (req.params.tpskill) + "'";
-
     let query = "SELECT * FROM SKILL";
 
     console.log(query);
@@ -146,7 +144,7 @@ app.get("/skill", (req, res) => {
 });
 
 ///
-/// It response by parsing [Projeto] column {PROJETO_ID} and retrives respective data
+/// It response by parsing [Skill] column {SKILL_ID} and retrives respective data
 ///
 app.get("/skill/:id", (req, res) => {
     let query = "SELECT * FROM SKILL WHERE SKILL_ID = " + "'" + (req.params.id) + "'";
@@ -170,7 +168,6 @@ app.get("/skills/:tipo", (req, res) => {
 
 app.post("/membro/skill/adiciona/:skid/:membroid", (req, res) => {
     let query = "INSERT INTO SKILL_PESSOA VALUES (null, "  + req.params.skid + ", " + req.params.membroid + ")";
-    console.log(query);
     db.query(query, (error, result) => {
         res.json(result);
     });
@@ -191,8 +188,6 @@ app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
 app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
     let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '" + req.params.cpf + "', '" + req.params.senha + "', '"  + req.params.telefone + "', 'ATIVO');";
 
-    console.log(query);
-
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
         return res.json(result);
@@ -203,8 +198,6 @@ app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => 
 
 app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao", (req, res) => {
     let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', '" + req.params.localizacao + "', '" + req.params.palestrante + "');";
-
-    console.log(query);
 
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
