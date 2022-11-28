@@ -210,8 +210,6 @@ app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao",
 app.post("/reuniao/adicionar/:descricao/:localizacao/:datahora/:responsavel/:ata", (req, res) => {
     let query = "INSERT INTO REUNIAO VALUES (null, " + req.params.responsavel + ", '" + req.params.descricao + "', '" + req.params.datahora + "', '" + req.params.localizacao + "', '" + req.params.ata + "')";
 
-    console.log(query);
-
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
         return res.json(result);
