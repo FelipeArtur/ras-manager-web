@@ -125,8 +125,8 @@ app.get("/projeto/:id", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/pessoas/cadastrar/:nome/:email/:senha", (req, res) => {
-    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '00000000001', '" + req.params.senha + "', '71999999998', 'ATIVO');";
+app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
+    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '" + req.params.cpf + "', '" + req.params.senha + "', '"  + req.params.telefone + "', 'ATIVO');";
 
     console.log(query);
 
