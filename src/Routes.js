@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddEvent from './modules/admin/AddEvent/AddEvent';
+import AddMeeting from './modules/admin/AddMeeting/AddMeeting';
 import AddMember from './modules/admin/AddMember/AddMember';
 import Login from './modules/auth/login/Login';
 import Habilidades from './modules/auth/register/Habilidades/Habilidades';
@@ -22,6 +23,7 @@ export default function AppRoutes () {
             <Route exact path="/eventos" element={<Eventos/>}/>
             <Route exact path="/eventos/adicionar" element={<AddEvent/>}/>
             <Route exact path="/reunioes" element={<Reunioes/>}/>
+            <Route exact path="/reunioes/adicionar" element={<AddMeeting/>}/>
             <Route exact path="/projetos" element={<Projetos/>}/>
           </Routes>
         </BrowserRouter>
