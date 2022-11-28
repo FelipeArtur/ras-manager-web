@@ -1,6 +1,7 @@
 .white-container {
     align-items: center;
     align-content: center;
+    height: 60%;
 }
 
 .grid-row {
@@ -23,4 +24,10 @@
 .grid-row-soft {
     align-items: stretch;
     align-content: stretch;
+}
+
+.skills-title {
+    color: #721764;
+    font-size: 90%;
+    text-decoration-line: underline;
 }

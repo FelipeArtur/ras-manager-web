@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 
 import CustomInput  from "./../../../utils/components/CustomInput/CustomInput";
-
+import Axios from 'axios';
 import logo from "../../../assets/logo.png";
-
 
 import './Login.css';
 import CustomButton from "../../../utils/components/CustomButton/CustomButton";
 
 export default function Login() {
 
-    const [values, setValues] = useState();
+    const [pessoas, setPessoas] = useState([]);
 
-    const handleChangeValues = (value) => {
-        setValues((prevValue) => ({
-            ...prevValue,
-            [value.target.user]: value.target.value,
-            [value.target.password]: value.target.password,
-        }));
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleClickBtn() {
+        console.log("CLICOU");
     }
 
-    const handleClickBtn = () => {
-        console.log(values);
+    function handleChangeEmail(ev) {
+        setEmail(ev.target.value);
     }
+
+    function handleChangePassword(ev) {
+        setPassword(ev.target.value);
+    }
+
+    let route = "/catalogo";
 
     return (
             <>
@@ -30,23 +34,39 @@ export default function Login() {
                     <img src={logo} alt="RAS Logo" className="ras-logo"/>
                     <div className="input-column">
                         <CustomInput 
-                        className="login-input-user" 
+                        id="login-input-user" 
                         type="text" 
                         placeholder="Usuário" 
                         maxLength={35}
-                        onChange={handleChangeValues}
+                        onChange={(e) => handleChangeEmail(e)}
                         />
                         <CustomInput 
                         id="login-input-password" 
                         type="password" 
                         placeholder="Senha" 
                         maxLength={20}
-                        onChange={handleChangeValues}
+                        onChange={(e) => handleChangePassword(e)}
                         />
                     </div>
                     <CustomButton 
-                    onClick={()=> handleClickBtn}
-                    navTo="/catalogo" 
+                    onClick={()=> {
+                Axios.get("http://localhost:3001/auth/" + email).then((response) => {
+                    console.log(response.data);
+                    setPessoas(response.data);
+
+                }).finally(() => {
+                    let person = pessoas.at(0);
+                    if (person.SENHA === password) {
+                        // NAVEGAR PRA PRÓXIMA PÁGINA
+                        route="/catalogo";
+                        console.log("Usuário autenticado!");
+                    } else {
+                        console.log("Autenticação falhou :(");
+                    }
+                });
+        return handleClickBtn;
+                    }}
+                    navTo={route} 
                     text="ENTRAR"
                     />
                 </div> 

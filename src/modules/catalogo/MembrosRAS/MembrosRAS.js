@@ -18,7 +18,7 @@ export default function MembrosRAS() {
     }, []);
 
         return (
-            <BaseCatalogo title={
+            <BaseCatalogo addBtnPath={"/membros/cadastrar"} title={
                 <h1 className="catalogo-sub-title">Membros RAS</h1>
             }
             children={
@@ -27,7 +27,7 @@ export default function MembrosRAS() {
                 return <MembroCard
                 key={value.PESSOA_ID}
                 name={"" + value.NOME}
-                class={"" + value.DT_INGRESSO_CURSO}
+                member_class={"" + value.DT_INGRESSO_CURSO}
                 email={"" + value.EMAIL}
                 />
                 })}

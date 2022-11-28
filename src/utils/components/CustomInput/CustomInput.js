@@ -2,16 +2,12 @@ import React from 'react';
 
 import './CustomInput.css';
 
-class CustomInput extends React.Component {
-    render() {
-        return(
-            <input className='custom-input'
-            type={this.props.type}
-            onChange={this.onChange}
-            placeholder={this.props.placeholder}
-            maxLength={this.props.maxLength}/>
-        );
-    }
+export default function CustomInput({type, onChange, placeholder, maxLength}) {
+    return(
+        <input className='custom-input'
+        type={type}
+        onChange={onChange}
+        placeholder={placeholder}
+        maxLength={maxLength}/>
+    );
 }
-
-export default CustomInput;
