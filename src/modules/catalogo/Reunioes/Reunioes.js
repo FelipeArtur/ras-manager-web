@@ -16,7 +16,7 @@ export default function Reunioes() {
     }, []);
 
     return (
-        <BaseCatalogo addBtnPath={""} title={
+        <BaseCatalogo addBtnPath={"/reunioes/adicionar"} title={
             <h1 className="catalogo-sub-title">REUNIÕES</h1>
         } children={
             <>

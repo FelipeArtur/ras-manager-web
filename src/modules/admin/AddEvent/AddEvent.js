@@ -43,9 +43,6 @@ export default function AddEvent() {
                 maxLength={35}
                 onChange={(e) => handleChangeInput(e, setLocalizacao)}
             />
-            <button className="back-to-event-btn">
-                <Link className="btn-text" to="/eventos">VOLTAR</Link>
-                </button>
             <button className="add-btn"
                 onClick={() => {
                     Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante + "/" + localizacao).then((response) => {
@@ -59,6 +56,9 @@ export default function AddEvent() {
             >
                 ADICIONAR
             </button>
+            <button className="back-to-event-btn">
+                <Link className="btn-text" to="/eventos">VOLTAR</Link>
+                </button>
         </div>
     );
 }
