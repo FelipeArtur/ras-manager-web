@@ -216,6 +216,17 @@ app.post("/reuniao/adicionar/:descricao/:localizacao/:datahora/:responsavel/:ata
     });
 })
 
+//#//#//#//#//#//#//#//#//# [ CADASTRO DE PROJETO ] //#//#//#//#//#//#//#//#//#
+
+app.post("/projetos/adicionar/:descricao/:responsavelID/:status", (req, res) => {
+    let query = "INSERT INTO PROJETO VALUES (null, " + req.params.responsavelID + ", '" + req.params.descricao + "', '" + req.params.status + "')";
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
 const _serverPort = 3001;
 
 app.listen(_serverPort, () => {
