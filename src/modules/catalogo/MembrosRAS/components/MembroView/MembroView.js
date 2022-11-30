@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 
-import { DataFormat } from "../../../../../utils/classes/DataFormat";
 
 import "./MembroView.css";
 
@@ -18,8 +17,6 @@ export default function MembroView() {
             setPessoa(response.data);
         });
     }, [id]);
-
-    let data = new DataFormat();
 
     return (
         <div className="membro-view-card">        
@@ -38,13 +35,13 @@ export default function MembroView() {
 
                             <div className="selected-member-in-project-row">
                                 <div className="selected-member-data-entered-course">
-                                    Ingressou no curso em {data.sqlToJsDate(value.DT_INGRESSO_CURSO)}
+                                    Ingressou no curso em {sqlToJsDate(value.DT_INGRESSO_CURSO)}
                                 </div>
                             </div>
 
                             <div className="selected-member-in-project-row">
                                 <div className="selected-member-data-entered-ras">
-                                    Ingressou no RAS em {data.sqlToJsDate(value.DT_INGRESSO_RAS)}
+                                    Ingressou no RAS em {sqlToJsDate(value.DT_INGRESSO_RAS)}
                                 </div>
                             </div>
 
@@ -55,6 +52,58 @@ export default function MembroView() {
         </div>
     );
 
-    
+    function parseMes(mes) {
+
+        const translateMes = {
+            "jan": "janeiro",
+            "feb": "fevereiro",
+            "mar": "março",
+            "apr": "abril",
+            "may": "maio",
+            "jun": "junho",
+            "jul": "julho",
+            "aug": "agosto",
+            "sep": "setembro",
+            "oct": "outubro",
+            "nov": "novembro",
+            "dec": "dezembro",
+        }
+
+        let entries = Object.entries(translateMes);
+        
+        let meses = entries.filter(([key, value]) => {
+            return key.toLowerCase() === mes.toLowerCase() ? value : "";
+        }).at(0)[1];
+
+        return meses;
+    }
+
+    function sqlToJsDate(sqlDate){
+        let dateTime = sqlDate.replace("T", " ").replace("Z", "");
+
+        let dateTimeParts= dateTime.split(/[- :]/);
+        dateTimeParts[1]--;
+
+        let dateStr = new Date(...dateTimeParts).toString();
+
+        return formatDataBR(formatDate(dateStr));
+    }
+
+    function formatDate(date) {
+        const dateSplit = date.split("03:00:00 GMT");
+
+        let justDate = dateSplit[0];
+
+        return justDate;
+    }
+
+    function formatDataBR(data) {
+        const dataSep = data.split(" ");
+        let mes = dataSep[1];
+        let dia = dataSep[2];
+        let ano = dataSep[3];
+
+        return dia + " de " + parseMes(mes) + " de " + ano;
+    }
 
 }
