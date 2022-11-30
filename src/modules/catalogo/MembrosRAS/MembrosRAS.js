@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MembrosRAS.css";
 
 import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo"
-import MembroCard from "./components/MembroCard";
+import MembroCard from "./components/MembroCard/MembroCard";
 import Axios from "axios";
 
 import "../../catalogo/components/BaseCatalogo/BaseCatalogo.css";
@@ -25,6 +25,7 @@ export default function MembrosRAS() {
                 <>
                 {typeof listMembers != "undefined" && listMembers.map((value) => {
                 return <MembroCard
+                id={value.PESSOA_ID}
                 key={value.PESSOA_ID}
                 name={"" + value.NOME}
                 member_class={"" + value.DT_INGRESSO_CURSO}
