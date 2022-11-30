@@ -37,7 +37,7 @@ export default function Login() {
                         id="login-input-user" 
                         type="text" 
                         placeholder="Usuário" 
-                        maxLength={35}
+                        maxLength={50}
                         onChange={(e) => handleChangeEmail(e)}
                         />
                         <CustomInput 
@@ -51,15 +51,15 @@ export default function Login() {
                     <CustomButton 
                     onClick={()=> {
                 Axios.get("http://localhost:3001/auth/" + email).then((response) => {
-                    console.log(response.data);
                     setPessoas(response.data);
 
                 }).finally(() => {
                     let person = pessoas.at(0);
+                    console.log(person);
                     if (person.SENHA === password) {
                         // NAVEGAR PRA PRÓXIMA PÁGINA
-                        route="/catalogo";
                         console.log("Usuário autenticado!");
+                        window.location.href = "http://localhost:3000/catalogo";
                     } else {
                         console.log("Autenticação falhou :(");
                     }
