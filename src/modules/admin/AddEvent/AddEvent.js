@@ -3,7 +3,6 @@ import CustomInput from "../../../utils/components/CustomInput/CustomInput";
 
 import Axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function AddEvent() {
 
@@ -46,19 +45,15 @@ export default function AddEvent() {
             <button className="add-btn"
                 onClick={() => {
                     Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante + "/" + localizacao).then((response) => {
-                    }).finally(() => {
-                        // setDescricao("");
-                        // setPalestrante("");
-                        // setResponsavel("");
+                        window.location.href = "http://localhost:3000/eventos";
+                    }).catch(() => {
+                        alert("ERRO");
                     });
                 }
                 }
             >
                 ADICIONAR
             </button>
-            <button className="back-to-event-btn">
-                <Link className="btn-text" to="/eventos">VOLTAR</Link>
-                </button>
         </div>
     );
 }

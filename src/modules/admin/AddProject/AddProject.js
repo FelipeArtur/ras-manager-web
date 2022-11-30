@@ -86,7 +86,11 @@ export default function AddProject() {
             </div>
             {responsavel !== "" ? <h3 className="project-responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
             <button className="criar-projeto-btn" onClick={() => {
-                Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status);
+                Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((_) => {
+                    window.location.href = "http://localhost:3000/projetos";
+                }).catch(() => {
+                    alert("ERRO");
+                });
             }}>CRIAR PROJETO</button>
             <button className="back-to-project-btn">
                 <Link to={"/projetos"} className="back-to-project-btn-txt">VOLTAR</Link>

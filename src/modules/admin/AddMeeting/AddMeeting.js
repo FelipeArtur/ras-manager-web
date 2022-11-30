@@ -78,7 +78,11 @@ export default function AddMeeting() {
             </div>
             {responsavel !== "" ? <h3 className="responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
             <button className="criar-reuniao-btn" onClick={() => {
-                Axios.post("http://localhost:3001/reuniao/adicionar/" + descricao + "/" + localizacao + "/" + dataHora + "/" + responsavelID + "/" + ata);
+                Axios.post("http://localhost:3001/reuniao/adicionar/" + descricao + "/" + localizacao + "/" + dataHora + "/" + responsavelID + "/" + ata).then((_) => {
+                    window.location.href = "http://localhost:3000/reunioes";
+                }).catch(() => {
+                    alert("ERRO");
+                });
             }}>CRIAR REUNIÃO</button>
             <button className="back-to-meet-btn">
                 <Link to={"/reunioes"} className="back-to-meeting-btn-txt">VOLTAR</Link>
