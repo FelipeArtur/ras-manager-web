@@ -11,8 +11,8 @@
 - [x] Deletar reunião
 
 :::: BANCO ::::
-- [ ] Atualizar tabela EVENTO_PESSOA ao colocar membro como responsável
-- [ ] Atualizar tabela REUNIAO_PESSOA ao colocar membro como responsável
+- [x] Atualizar tabela EVENTO_PESSOA ao colocar membro como responsável
+- [x] Atualizar tabela REUNIAO_PESSOA ao colocar membro como responsável
 
 > Não tão urgente
 - [ ] Atualizar membro
@@ -21,3 +21,9 @@
 - [ ] Atualizar reunião
 
 - [ ] Melhorar e PADRONIZAR aparência de alguns botões
+
+> Próximos passos
+
+- [ ] Remover membro de um projeto (através da View única do membro) --> {atualiza tabelas: `PESSOA` e `PROJETO_PESSOA`}
+- [ ] Remover membro de um evento (através da View única do membro) --> {atualiza tabela: `EVENTO_PESSOA`}
+- [ ] Remover membro de uma reunião (através da View única do membro) --> {atualiza tabela: `REUNIAO_PESSOA`}
