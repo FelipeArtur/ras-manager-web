@@ -10,14 +10,13 @@ export default function ReuniaoView() {
     const [reuniao, setReuniao] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/reuniao/" + id).then((response) => {
+        Axios.get(`http://localhost:3001/reuniao/${id}`).then((response) => {
             setReuniao(response.data);
         });
     }, [id]);
 
     return(
         <div className="reuniao-view-card">
-
             <div className="reuniao-card-options">
                     <Link to={"/reunioes"} className="reuniao-card-close">X</Link>
                 {typeof reuniao !== "undefined" && reuniao.map((value) => {
