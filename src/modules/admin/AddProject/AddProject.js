@@ -89,7 +89,7 @@ export default function AddProject() {
                 Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((_) => {
                     window.location.href = "http://localhost:3000/projetos";
                 }).catch(() => {
-                    alert("ERRO");
+                    alert("ERRO: Preencha os campos do projeto com informações válidas!");
                 });
             }}>CRIAR PROJETO</button>
             <button className="back-to-project-btn">

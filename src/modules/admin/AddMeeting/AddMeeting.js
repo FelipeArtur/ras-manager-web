@@ -81,7 +81,7 @@ export default function AddMeeting() {
                 Axios.post("http://localhost:3001/reuniao/adicionar/" + descricao + "/" + localizacao + "/" + dataHora + "/" + responsavelID + "/" + ata).then((_) => {
                     window.location.href = "http://localhost:3000/reunioes";
                 }).catch(() => {
-                    alert("ERRO");
+                    alert("ERRO: Preencha os campos da reunião com informações válidas!");
                 });
             }}>CRIAR REUNIÃO</button>
             <button className="back-to-meet-btn">

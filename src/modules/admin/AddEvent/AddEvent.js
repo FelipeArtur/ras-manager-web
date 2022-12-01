@@ -2,7 +2,9 @@ import "./AddEvent.css";
 import CustomInput from "../../../utils/components/CustomInput/CustomInput";
 
 import Axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import DropdownTile from "../AddMeeting/components/DropdownTile";
 
 export default function AddEvent() {
 
@@ -15,44 +17,81 @@ export default function AddEvent() {
         changeFunction(ev.target.value);
     }
 
+    const [showRespEvento, setShowRespEvento] = useState(false);
+
+    const [responsavelID, setResponsavelID] = useState(0);
+
+    const [pessoasDropdown, setPessoasDropdown] = useState([]);
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/pessoas").then((response) => {
+            setPessoasDropdown(response.data);
+        });
+    }, []);
+
+    function handleBtnDropdownResponsaveis() {
+        setShowRespEvento(!showRespEvento);
+    }
+
     return (
-        <div className="main-view">
+        <div className="event-main-view">
             <div className="add-event-text">ADICIONAR UM EVENTO </div>
-            <CustomInput
-                type="text"
-                placeholder="Descrição"
-                maxLength={35}
-                onChange={(e) => handleChangeInput(e, setDescricao)}
-            />
-            <CustomInput
-                type="text"
-                placeholder="ID do responsável"
-                maxLength={35}
-                onChange={(e) => handleChangeInput(e, setResponsavel)}
-            />
-            <CustomInput
-                type="text"
-                placeholder="Palestrante"
-                maxLength={35}
-                onChange={(e) => handleChangeInput(e, setPalestrante)}
-            />
-            <CustomInput
-                type="text"
-                placeholder="Localização"
-                maxLength={35}
-                onChange={(e) => handleChangeInput(e, setLocalizacao)}
-            />
-            <button className="add-btn"
+            <div className="event-inputs">
+                <CustomInput
+                    type="text"
+                    placeholder="Descrição"
+                    maxLength={35}
+                    onChange={(e) => handleChangeInput(e, setDescricao)}
+                />
+                <CustomInput
+                    type="text"
+                    placeholder="Palestrante"
+                    maxLength={35}
+                    onChange={(e) => handleChangeInput(e, setPalestrante)}
+                />
+                <CustomInput
+                    type="text"
+                    placeholder="Localização"
+                    maxLength={35}
+                    onChange={(e) => handleChangeInput(e, setLocalizacao)}
+                />
+            </div>
+
+            {/* ----------------------------------------------------------------------- */}
+            <button className="event-responsavel-dropdown" onClick={handleBtnDropdownResponsaveis}>
+                <h2 className="event-dropdown-text">Selecione um responsavel</h2>
+            </button>
+            <div className="event-responsaveis-overflow">
+            {showRespEvento === false ? <div className="event-dropdown-invisible"/> : 
+            (typeof pessoasDropdown != "undefined" && pessoasDropdown.map((value) => {
+                return <DropdownTile key={value.PESSOA_ID} nomePessoa={value.NOME}
+                    onClick={() => {
+                        setResponsavel(value.NOME);
+                        setResponsavelID(value.PESSOA_ID);
+                        handleBtnDropdownResponsaveis();
+                    }}
+                />
+            }))
+            }
+            </div>
+            {responsavel !== "" ? <h3 className="event-responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
+            {/* ----------------------------------------------------------------------- */}
+
+            <button className="add-event-btn"
                 onClick={() => {
-                    Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavel + "/" + palestrante + "/" + localizacao).then((response) => {
+                    Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavelID + "/" + palestrante + "/" + localizacao).then((response) => {
                         window.location.href = "http://localhost:3000/eventos";
                     }).catch(() => {
-                        alert("ERRO");
+                        alert("ERRO: Preencha os campos do evento com informações válidas!");
                     });
                 }
                 }
             >
                 ADICIONAR
+            </button>
+            
+            <button className="back-to-event-btn">
+                <Link to={"/eventos"} className="back-to-event-btn-txt">VOLTAR</Link>
             </button>
         </div>
     );
