@@ -45,6 +45,16 @@ export default function MembroView() {
                                 </div>
                             </div>
 
+                            <button className="deletar-membro-btn"
+                                onClick={(_) => {
+                                    Axios.delete("http://localhost:3001/membro/deletar/" + id).then((_) => {
+                                        window.location.href = "http://localhost:3000/membros";
+                                    }).finally(() => {
+                                        alert(`Membro [${id}] deletado com sucesso!`);
+                                    });
+                                }}
+                            >DELETAR MEMBRO</button>
+
                         </div>
                     </>);
                 })}
