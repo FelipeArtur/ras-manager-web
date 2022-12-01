@@ -10,6 +10,9 @@
 - [x] Deletar projeto
 - [x] Deletar reunião
 
+- [ ] `ALERT` para usuário não autenticado
+- [ ] Ajeitar os `ALERT` para: deletar membro, deletar evento e deletar reunião 
+
 :::: BANCO ::::
 - [x] Atualizar tabela EVENTO_PESSOA ao colocar membro como responsável
 - [x] Atualizar tabela REUNIAO_PESSOA ao colocar membro como responsável

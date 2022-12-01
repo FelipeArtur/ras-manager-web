@@ -58,8 +58,15 @@ export default function AddProject() {
                 (typeof statusList != "undefined" && statusList.map((value) => {
                     return <DropdownTile key={value} nomePessoa={value}
                     onClick={() => {
-                        let st = value.replace(" ", "");
-                        selectedStatus(st);
+                        if (value === "EM PROGRESSO") {
+                            selectedStatus("EMPROGRESSO");
+                        }
+                        if (value === "CONCLUÍDO") {
+                            selectedStatus("CONCLUIDO");
+                        }
+                        if (value === "ABANDONADO") {
+                            selectedStatus(value);
+                        }
                         handleButtonStatus();
                     }}
                 />
@@ -86,8 +93,16 @@ export default function AddProject() {
             </div>
             {responsavel !== "" ? <h3 className="project-responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
             <button className="criar-projeto-btn" onClick={() => {
-                Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((_) => {
-                    window.location.href = "http://localhost:3000/projetos";
+                Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((response) => {
+
+                    let data = response.data;
+
+                    if (data.error) {
+                        alert(`ERRO: ${data.error.sqlMessage}`);
+                    } else {
+                        window.location.href = "http://localhost:3000/projetos";
+                    }
+
                 }).catch(() => {
                     alert("ERRO: Preencha os campos do projeto com informações válidas!");
                 });

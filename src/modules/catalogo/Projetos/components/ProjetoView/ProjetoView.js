@@ -34,10 +34,16 @@ export default function ProjetoView() {
 
             <button className="deletar-projeto-btn"
                 onClick={(_) => {
-                    Axios.delete(`http://localhost:3001/projeto/deletar/${id}`).then((_) => {
-                        window.location.href = "http://localhost:3000/projetos";
-                    }).finally(() => {
+                    Axios.delete(`http://localhost:3001/projeto/deletar/${id}`).then((response) => {
+
+                    let data = response.data;
+
+                    if (data.error) {
+                        alert(`ERRO: ${data.error.sqlMessage}`);
+                    } else {
                         alert(`Projeto [${id}] deletado com sucesso!`);
+                        window.location.href = "http://localhost:3000/projetos";
+                    }
                     });
                 }}>DELETAR PROJETO</button>
         </div>

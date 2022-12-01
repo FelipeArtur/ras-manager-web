@@ -272,6 +272,17 @@ app.delete("/projeto/deletar/:id", (req, res) => {
     });
 })
 
+//#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO DO PROJETO ATUAL ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/membro-projeto/deletar/:pessoaID/:projetoID", (req, res) => {
+    let query = `DELETE FROM PROJETO_PESSOA WHERE PROJETO_ID = ${req.params.projetoID} AND PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
 const _serverPort = 3001;
 
 app.listen(_serverPort, () => {
