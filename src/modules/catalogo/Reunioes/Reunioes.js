@@ -23,6 +23,7 @@ export default function Reunioes() {
             {typeof reunioesList != "undefined" && reunioesList.map((value) => {
                 return <ReuniaoCard
                     key={value.REUNIAO_ID}
+                    id={value.REUNIAO_ID}
                     nome={value.DESCRICAO}
                     local={value.LOCALIZACAO}
                     horario={value.DT_HORA}

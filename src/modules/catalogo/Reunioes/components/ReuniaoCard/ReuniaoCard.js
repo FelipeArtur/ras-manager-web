@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import './ReuniaoCard.css';
 
-export default function ReuniaoCard({nome, local, horario}) {
+export default function ReuniaoCard({nome, local, horario, id}) {
     return (
         <div className="ras-member-card">
-            <div className="member-name">{nome}</div>
+            <Link to={`/reuniao/${id}`} className="member-name">{nome}</Link>
             <div className="member-local">{local}</div>
             <div className="member-horario">{horario}</div>
             
