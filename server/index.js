@@ -239,6 +239,39 @@ app.delete("/membro/deletar/:id", (req, res) => {
     });
 })
 
+//#//#//#//#//#//#//#//#//# [ DELETAR EVENTO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/evento/deletar/:id", (req, res) => {
+    let query = "DELETE FROM EVENTO WHERE EVENTO_ID = " + req.params.id;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR REUNIAO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/reuniao/deletar/:id", (req, res) => {
+    let query = "DELETE FROM REUNIAO WHERE REUNIAO_ID = " + req.params.id;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR PROJETO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/projeto/deletar/:id", (req, res) => {
+    let query = "DELETE FROM PROJETO WHERE PROJETO_ID = " + req.params.id;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
 const _serverPort = 3001;
 
 app.listen(_serverPort, () => {
