@@ -14,6 +14,13 @@ export default function MembroView() {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/pessoa/" + id).then((response) => {
+
+            let data = response.data;
+
+            if (data.error) {
+                alert(`ERRO: ${data.error.sqlMessage}`);
+            }
+
             setPessoa(response.data);
         });
     }, [id]);
@@ -30,10 +37,6 @@ export default function MembroView() {
                             <div className="selected-member-ativo">(Usuário {value.ATIVO})</div>
 
                             <div className="selected-member-in-project-row">
-                                <div className="selected-member-in-project">Este membro {value.PROJETO_ID !== null ? "está" : "não está"} em algum projeto!</div>
-                            </div>
-
-                            <div className="selected-member-in-project-row">
                                 <div className="selected-member-data-entered-course">
                                     Ingressou no curso em {sqlToJsDate(value.DT_INGRESSO_CURSO)}
                                 </div>
@@ -44,6 +47,22 @@ export default function MembroView() {
                                     Ingressou no RAS em {sqlToJsDate(value.DT_INGRESSO_RAS)}
                                 </div>
                             </div>
+
+                            {value.PROJETO_ID !== null ? 
+                            <button className="remove-from-project-btn" onClick={(_) => {
+                                Axios.delete(`http://localhost:3001/membro-projeto/deletar/${id}/${value.PROJETO_ID}`).then((_) => {
+                                    window.location.href = `http://localhost:3000/membro/${id}`;
+                                }).finally(() => {
+                                    alert(`${value.NOME} foi removido(a) do projeto [${value.PROJETO_ID}] com sucesso!`)
+                                });
+                            }}>🠺 Remover este membro do projeto atual</button> 
+                            : null}
+                            {value.PROJETO_ID !== null ? 
+                            <button className="go-project-btn" onClick={(_) => {
+                                window.location.href = `http://localhost:3000/projeto/${value.PROJETO_ID}`;
+                            }}>🠺 Ir para projeto</button> 
+                            : null}
+
 
                             <button className="deletar-membro-btn"
                                 onClick={(_) => {

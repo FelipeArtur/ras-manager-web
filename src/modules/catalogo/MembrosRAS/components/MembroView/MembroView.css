@@ -55,7 +55,7 @@
 /* -------------------------------------------------------------- */
 
 .deletar-membro-btn {
-    margin-top: 30%;
+    margin-top: 27%;
     padding-top: 4px;
     padding-bottom: 4px;
     align-self: center;
@@ -63,4 +63,32 @@
     color: white;
     width: 30%;
     border-style: none;
+}
+
+.go-project-btn {
+    background-color: transparent;
+    border-style: none;
+    width: 24%;
+    color: #721764;
+    margin-top: 3%;
+}
+
+.go-project-btn:hover {
+    background-color: rgb(177, 177, 177);
+    width: 24%;
+    border-radius: 8%;
+}
+
+.remove-from-project-btn {
+    background-color: transparent;
+    border-style: none;
+    width: 56%;
+    color: #721764;
+    margin-top: 3%;
+}
+
+.remove-from-project-btn:hover {
+    background-color: rgb(177, 177, 177);
+    width: 56%;
+    border-radius: 8%;
 }
