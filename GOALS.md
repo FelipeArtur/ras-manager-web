@@ -2,12 +2,12 @@
 
 > Urgente
 - [x] Visualização de evento único
-- [ ] Visualização de projeto único
+- [x] Visualização de projeto único
 - [x] Visualização de reunião única
 
 - [x] Deletar membro
 - [x] Deletar evento
-- [ ] Deletar projeto
+- [x] Deletar projeto
 - [x] Deletar reunião
 
 :::: BANCO ::::

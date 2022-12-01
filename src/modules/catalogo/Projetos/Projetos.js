@@ -5,7 +5,7 @@ import BaseCatalogo from "../components/BaseCatalogo/BaseCatalogo"
 import Axios from "axios";
 
 import "../../catalogo/components/BaseCatalogo/BaseCatalogo.css";
-import ProjetoCard from "./components/ProjetoCard";
+import ProjetoCard from "./components/ProjetoCard/ProjetoCard";
 
 export default function Projetos() {
 
@@ -27,6 +27,7 @@ export default function Projetos() {
                 {typeof projectList != "undefined" && projectList.map((value) => {
                 return <ProjetoCard
                 key={value.PROJETO_ID}
+                id={value.PROJETO_ID}
                 description={"" + value.DESCRICAO}
                 responsavel={"" + value.RESPONSAVEL_ID}
                 status={"" + value.STATUS}
