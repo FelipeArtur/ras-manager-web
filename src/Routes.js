@@ -6,6 +6,8 @@ import AddProject from './modules/admin/AddProject/AddProject';
 import Login from './modules/auth/login/Login';
 import Habilidades from './modules/auth/register/Habilidades/Habilidades';
 import Catalogo from './modules/catalogo/Catalogo';
+import InfoDev from './modules/catalogo/components/InfoDev/InfoDev';
+import EventoView from './modules/catalogo/Eventos/components/EventoView/EventoView';
 import Eventos from './modules/catalogo/Eventos/Eventos';
 import MembroView from './modules/catalogo/MembrosRAS/components/MembroView/MembroView';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
@@ -23,11 +25,17 @@ export default function AppRoutes () {
             <Route exact path="/membros/cadastrar" element={<AddMember/>}/>
             <Route exact path="/membro/:id" element={<MembroView/>}/>
             <Route exact path="/eventos" element={<Eventos/>}/>
+            <Route exact path="/evento/:id" element={<EventoView/>}/>
             <Route exact path="/eventos/adicionar" element={<AddEvent/>}/>
             <Route exact path="/reunioes" element={<Reunioes/>}/>
             <Route exact path="/reunioes/adicionar" element={<AddMeeting/>}/>
             <Route exact path="/projetos" element={<Projetos/>}/>
             <Route exact path="/projetos/adicionar" element={<AddProject/>}/>
+
+            {/* ------------------------------------------------------------- */}
+
+            <Route exact path="/infodev" element={<InfoDev/>}/>
+
           </Routes>
         </BrowserRouter>
     );

@@ -28,8 +28,8 @@ export default function MembrosRAS() {
                 id={value.PESSOA_ID}
                 key={value.PESSOA_ID}
                 name={"" + value.NOME}
-                member_class={"" + value.DT_INGRESSO_CURSO}
                 email={"" + value.EMAIL}
+                ativo={"" + value.ATIVO}
                 />
                 })}
                 </>

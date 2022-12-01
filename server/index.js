@@ -33,8 +33,7 @@ app.get("/pessoas", (req, res) => {
 /// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
 ///
 app.get("/pessoa/:id", (req, res) => {
-    let query = "SELECT * FROM PESSOA WHERE PESSOA_ID =  " + "'" + (req.params.id) + "'";
-
+    let query = "SELECT * FROM PESSOA WHERE PESSOA_ID = " + req.params.id;
     
     db.query(query, (error, result) => {
         res.json(result);
@@ -196,8 +195,8 @@ app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => 
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE EVENTO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao", (req, res) => {
-    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', '" + req.params.localizacao + "', '" + req.params.palestrante + "');";
+app.post("/eventos/adicionar/:descricao/:responsavelID/:palestrante/:localizacao", (req, res) => {
+    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavelID + ", '" + req.params.descricao + "', '2022-09-20', '" + req.params.localizacao + "', '" + req.params.palestrante + "');";
 
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
