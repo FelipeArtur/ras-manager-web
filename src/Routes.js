@@ -12,6 +12,7 @@ import Eventos from './modules/catalogo/Eventos/Eventos';
 import MembroView from './modules/catalogo/MembrosRAS/components/MembroView/MembroView';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
 import Projetos from './modules/catalogo/Projetos/Projetos';
+import ReuniaoView from './modules/catalogo/Reunioes/components/ReuniaoView/ReuniaoView';
 import Reunioes from './modules/catalogo/Reunioes/Reunioes';
 
 export default function AppRoutes () {
@@ -28,6 +29,7 @@ export default function AppRoutes () {
             <Route exact path="/evento/:id" element={<EventoView/>}/>
             <Route exact path="/eventos/adicionar" element={<AddEvent/>}/>
             <Route exact path="/reunioes" element={<Reunioes/>}/>
+            <Route exact path="/reuniao/:id" element={<ReuniaoView/>}/>
             <Route exact path="/reunioes/adicionar" element={<AddMeeting/>}/>
             <Route exact path="/projetos" element={<Projetos/>}/>
             <Route exact path="/projetos/adicionar" element={<AddProject/>}/>

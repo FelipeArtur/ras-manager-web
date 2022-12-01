@@ -3,12 +3,12 @@
 > Urgente
 - [x] Visualização de evento único
 - [ ] Visualização de projeto único
-- [ ] Visualização de reunião única
+- [x] Visualização de reunião única
 
 - [x] Deletar membro
 - [x] Deletar evento
 - [ ] Deletar projeto
-- [ ] Deletar reunião
+- [x] Deletar reunião
 
 :::: BANCO ::::
 - [ ] Atualizar tabela EVENTO_PESSOA ao colocar membro como responsável

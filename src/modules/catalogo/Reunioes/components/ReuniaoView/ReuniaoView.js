@@ -1,43 +1,41 @@
-import "./EventoView.css";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import "./ReuniaoView.css";
 
-
-export default function EventoView() {
+export default function ReuniaoView() {
 
     const {id} = useParams();
 
-    const [evento, setEvento] = useState([]);
+    const [reuniao, setReuniao] = useState([]);
 
     useEffect(() => {
-        Axios.get(`http://localhost:3001/evento/${id}`).then((response) => {
-            setEvento(response.data);
+        Axios.get("http://localhost:3001/reuniao/" + id).then((response) => {
+            setReuniao(response.data);
         });
     }, [id]);
 
+    return(
+        <div className="reuniao-view-card">
 
-    return (
-        <div className="evento-view-card">        
-            <div className="evento-card-options">
-                    <Link to={"/eventos"} className="evento-card-close">X</Link>
-                {typeof evento !== "undefined" && evento.map((value) => {
+            <div className="reuniao-card-options">
+                    <Link to={"/reunioes"} className="reuniao-card-close">X</Link>
+                {typeof reuniao !== "undefined" && reuniao.map((value) => {
                     return (<>
-                        <div className="event-view-column">
-                            <div className="selected-event-descricao">{value.DESCRICAO}</div>
-                            <div className="selected-event-palestrante">Palestrante: {value.PALESTRANTE}</div>
-                            <div className="selected-event-ativo">(Responsável: {value.RESPONSAVEL_ID})</div>
+                        <div className="reuniao-view-column">
+                            <div className="selected-reuniao-descricao">{value.DESCRICAO}</div>
+                            <div className="selected-reuniao-responsavel">(Responsável: {value.RESPONSAVEL_ID})</div>
 
 
-                            <div className="selected-event-in-data-row">
-                                <div className="selected-event-data-entered-course">
-                                    O evento acontecerá no dia {sqlToJsDate(value.DT_HORA)}
+                            <div className="selected-reuniao-info-row">
+                                <div className="selected-reuniao-data">
+                                    A reuniao acontecerá no dia {sqlToJsDate(value.DT_HORA)}
                                 </div>
                             </div>
 
-                            <div className="selected-event-in-data-row">
-                                <div className="selected-event-data-entered-ras">
-                                    O evento acontecerá no local: {value.LOCALIZACAO}
+                            <div className="selected-reuniao-info-row">
+                                <div className="selected-reuniao-data">
+                                    A reunião acontecerá no local: {value.LOCALIZACAO}
                                 </div>
                             </div>
 
@@ -45,14 +43,15 @@ export default function EventoView() {
                     </>);
                 })}
             </div>
-            <button className="deletar-evento-btn"
+
+            <button className="deletar-reuniao-btn"
                 onClick={(_) => {
-                    Axios.delete("http://localhost:3001/evento/deletar/" + id).then((_) => {
-                        window.location.href = "http://localhost:3000/eventos";
+                    Axios.delete(`http://localhost:3001/reuniao/deletar/${id}`).then((_) => {
+                        window.location.href = "http://localhost:3000/reunioes";
                     }).finally(() => {
-                        alert(`Evento [${id}] deletado com sucesso!`);
+                        alert(`Reunião [${id}] deletada com sucesso!`);
                     });
-                }}>DELETAR EVENTO</button>
+                }}>DELETAR REUNIÃO</button>
         </div>
     );
 
