@@ -226,6 +226,19 @@ app.post("/projetos/adicionar/:descricao/:responsavelID/:status", (req, res) => 
     });
 })
 
+//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#
+
+//#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/membro/deletar/:id", (req, res) => {
+    let query = "DELETE FROM PESSOA WHERE PESSOA_ID = " + req.params.id;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
 const _serverPort = 3001;
 
 app.listen(_serverPort, () => {
