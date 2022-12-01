@@ -5,8 +5,8 @@
 - [ ] Visualização de projeto único
 - [ ] Visualização de reunião única
 
-- [ ] Deletar membro
-- [ ] Deletar evento
+- [x] Deletar membro
+- [x] Deletar evento
 - [ ] Deletar projeto
 - [ ] Deletar reunião
 
@@ -19,3 +19,5 @@
 - [ ] Atualizar evento
 - [ ] Atualizar projeto
 - [ ] Atualizar reunião
+
+- [ ] Melhorar e PADRONIZAR aparência de alguns botões
