@@ -28,9 +28,9 @@ export default function Projetos() {
                 return <ProjetoCard
                 key={value.PROJETO_ID}
                 id={value.PROJETO_ID}
-                description={"" + value.DESCRICAO}
-                responsavel={"" + value.RESPONSAVEL_ID}
-                status={"" + value.STATUS}
+                description={`${value.DESCRICAO}`}
+                responsavel={`${value.RESPONSAVEL_ID}`}
+                status={`${value.STATUS}`}
                 />
                 })}
                 </>

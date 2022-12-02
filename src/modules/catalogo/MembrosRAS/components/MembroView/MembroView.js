@@ -33,7 +33,7 @@ export default function MembroView() {
                     return (<>
                         <div className="member-view-column">
                             <div className="selected-member-name">{value.NOME}</div>
-                            <div className="selected-member-email">{value.EMAIL}</div>
+                            <a className="selected-member-email" href={`mailto:${value.EMAIL}`}>{value.EMAIL}</a>
                             <div className="selected-member-ativo">(Usuário {value.ATIVO})</div>
 
                             <div className="selected-member-in-project-row">
@@ -66,7 +66,7 @@ export default function MembroView() {
 
                             <button className="deletar-membro-btn"
                                 onClick={(_) => {
-                                    Axios.delete("http://localhost:3001/membro/deletar/" + id).then((_) => {
+                                    Axios.delete(`http://localhost:3001/membro/deletar/${id}`).then((_) => {
                                         window.location.href = "http://localhost:3000/membros";
                                     }).finally(() => {
                                         alert(`Membro [${id}] deletado com sucesso!`);
