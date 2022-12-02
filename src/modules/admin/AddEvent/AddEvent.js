@@ -77,6 +77,10 @@ export default function AddEvent() {
             {responsavel !== "" ? <h3 className="event-responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
             {/* ----------------------------------------------------------------------- */}
 
+            <button className="back-to-event-btn">
+                <Link to={"/eventos"} className="back-to-event-btn-txt">VOLTAR</Link>
+            </button>
+
             <button className="add-event-btn"
                 onClick={() => {
                     Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavelID + "/" + palestrante + "/" + localizacao).then((response) => {
@@ -88,10 +92,6 @@ export default function AddEvent() {
                 }
             >
                 ADICIONAR
-            </button>
-            
-            <button className="back-to-event-btn">
-                <Link to={"/eventos"} className="back-to-event-btn-txt">VOLTAR</Link>
             </button>
         </div>
     );

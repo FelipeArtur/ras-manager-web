@@ -92,6 +92,11 @@ export default function AddProject() {
             }
             </div>
             {responsavel !== "" ? <h3 className="project-responsavel-selecionado">Responsável: {responsavel}</h3> : ""}
+
+            <button className="back-to-project-btn">
+                <Link to={"/projetos"} className="back-to-project-btn-txt">VOLTAR</Link>
+            </button>
+
             <button className="criar-projeto-btn" onClick={() => {
                 Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((response) => {
 
@@ -107,9 +112,6 @@ export default function AddProject() {
                     alert("ERRO: Preencha os campos do projeto com informações válidas!");
                 });
             }}>CRIAR PROJETO</button>
-            <button className="back-to-project-btn">
-                <Link to={"/projetos"} className="back-to-project-btn-txt">VOLTAR</Link>
-            </button>
         </div>
     );
 }
