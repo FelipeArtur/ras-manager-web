@@ -61,24 +61,23 @@
 
 .criar-projeto-btn {
     border-style: none;
-    background-color: red;
+    background-color: transparent;
     color: white;
-    margin-bottom: 15px;
-    margin-top: 20px;
-    font-size: 15px;
+    margin-bottom: 5%;
+    font-size: 90%;
 }
 
 .back-to-project-btn-txt {
     color: white;
     text-decoration-line: none;
     border-style: none;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 95%;
 }
 
 .back-to-project-btn {
     background-color: transparent;
-    margin-bottom: 8%;
+    border-style: none;
+    margin-bottom: 2%;
 }
 
 /* //////////////////////////////////// */

@@ -6,7 +6,7 @@ export default function MembroCard({id, name, ativo, email}) {
     
     return (
         <div className="ras-member-card">
-            <Link to={"/membro/" + id} className="member-name">{name}</Link>
+            <Link to={`/membro/${id}`} className="member-name">{name}</Link>
             <a className="member-email" href={`mailto:${email}`}>{email}</a>
             <div className="member-class">{ativo}</div>
         </div>

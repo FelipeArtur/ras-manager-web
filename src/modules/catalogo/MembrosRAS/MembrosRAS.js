@@ -27,9 +27,9 @@ export default function MembrosRAS() {
                 return <MembroCard
                 id={value.PESSOA_ID}
                 key={value.PESSOA_ID}
-                name={"" + value.NOME}
-                email={"" + value.EMAIL}
-                ativo={"" + value.ATIVO}
+                name={`${value.NOME}`}
+                email={`${value.EMAIL}`}
+                ativo={`${value.ATIVO}`}
                 />
                 })}
                 </>

@@ -8,18 +8,17 @@
 }
 
 .add-event-btn {
-    margin-top: 3%;
-    background-color: red;
-    border-color: red;
+    margin-bottom: 3%;
     border-style: none;
     color: white;
+    background-color: transparent;
     font-size: 90%;
 }
 
 .back-to-event-btn {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: #721764;
+    margin-bottom: 1%;
+    border-style: none;
+    background-color: transparent;
     color: white;
     font-size: 90%;
 }
@@ -62,6 +61,11 @@
 .event-dropdown-text {
     font-size: 80%;
     color: purple;
+}
+
+.event-responsavel-selecionado {
+    color: white;
+    font-size: 70%;
 }
 
 .event-responsavel-dropdown:hover {
