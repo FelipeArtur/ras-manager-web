@@ -55,9 +55,8 @@ export default function Habilidades() {
                         })}
                 </div>
                     </div>
-                    <button>VOLTAR</button>
-                    <button>
-                        <Link to={"/membros"}>FINALIZAR CADASTRO</Link>
+                    <button className="btn-finalizar-cad">
+                        <Link className="btn-finalizar-cad-link" to={"/membros"}>FINALIZAR CADASTRO</Link>
                     </button>
             </div>
         </>
