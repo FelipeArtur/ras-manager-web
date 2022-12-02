@@ -77,7 +77,8 @@
 .back-to-project-btn {
     background-color: transparent;
     border-style: none;
-    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-bottom: 1%;
 }
 
 /* //////////////////////////////////// */
@@ -98,6 +99,10 @@
     background-color: white;
     border-radius: 13px;
     margin-bottom: 5px;
+}
+
+.project-status-dropdown:hover {
+    background-color: rgba(252, 252, 252, 0.445);
 }
 
 .project-status-dropdown-text {

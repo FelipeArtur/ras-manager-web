@@ -34,7 +34,7 @@ export default function ProjetoView() {
 
             <button className="deletar-projeto-btn"
                 onClick={(_) => {
-                    Axios.delete(`http://localhost:3001/projeto/deletar/${id}`).then((response) => {
+                    Axios.delete(`http://localhost:3001/deletar-projeto/${id}`).then((response) => {
 
                     let data = response.data;
 

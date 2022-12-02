@@ -47,10 +47,15 @@ export default function EventoView() {
             </div>
             <button className="deletar-evento-btn"
                 onClick={(_) => {
-                    Axios.delete("http://localhost:3001/evento/deletar/" + id).then((_) => {
-                        window.location.href = "http://localhost:3000/eventos";
-                    }).finally(() => {
-                        alert(`Evento [${id}] deletado com sucesso!`);
+                    Axios.delete(`http://localhost:3001/deletar-evento/${id}`).then((response) => {
+                        
+                        if (response.data.error) {
+                            console.log(response.data.error);
+                            alert(`${response.data.error.sqlMessage}`);
+                        } else {
+                            alert(`Evento [${id}] deletado com sucesso!`);
+                            window.location.href = "http://localhost:3000/eventos";
+                        }
                     });
                 }}>DELETAR EVENTO</button>
         </div>

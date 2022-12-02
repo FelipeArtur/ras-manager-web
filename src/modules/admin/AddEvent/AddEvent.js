@@ -8,6 +8,14 @@ import DropdownTile from "../AddMeeting/components/DropdownTile";
 
 export default function AddEvent() {
 
+    const statusList = ["EM PROGRESSO", "ABANDONADO", "CONCLUÍDO"];
+    const [showStatus, setShowStatus] = useState(false);
+    const [status, selectedStatus] = useState("");
+
+    function handleButtonStatus() {
+        setShowStatus(!showStatus);
+    }
+
     const [descricao, setDescricao] = useState("");
     const [responsavel, setResponsavel] = useState("");
     const [palestrante, setPalestrante] = useState("");
@@ -57,6 +65,26 @@ export default function AddEvent() {
                 />
             </div>
 
+
+            {/* --------------------------------------------------------------------- */}
+                <button className="event-status-dropdown"  onClick={handleButtonStatus}>
+                <h2 className="event-status-dropdown-text">Status</h2>
+                </button>
+                <div className="event-status-overflow">
+                {showStatus === false ? <div className="event-status-dropdown-invisible"/> : 
+                (typeof statusList != "undefined" && statusList.map((value) => {
+                    return <DropdownTile key={value} nomePessoa={value}
+                    onClick={() => {
+                        selectedStatus(value.replace(" ", ""));
+                        handleButtonStatus();
+                    }}
+                />
+                }))
+                }
+                </div>
+            {/* --------------------------------------------------------------------- */}
+
+
             {/* ----------------------------------------------------------------------- */}
             <button className="event-responsavel-dropdown" onClick={handleBtnDropdownResponsaveis}>
                 <h2 className="event-dropdown-text">Selecione um responsavel</h2>
@@ -83,7 +111,7 @@ export default function AddEvent() {
 
             <button className="add-event-btn"
                 onClick={() => {
-                    Axios.post("http://localhost:3001/eventos/adicionar/" + descricao + "/" + responsavelID + "/" + palestrante + "/" + localizacao).then((response) => {
+                    Axios.post(`http://localhost:3001/adicionar-evento/${descricao}/${responsavelID}/${palestrante}/${localizacao}/${status}`).then((response) => {
                         window.location.href = "http://localhost:3000/eventos";
                     }).catch(() => {
                         alert("ERRO: Preencha os campos do evento com informações válidas!");
