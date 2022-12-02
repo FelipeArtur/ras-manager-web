@@ -57,7 +57,7 @@ export default function Login() {
                         alert("Preencha os campos obrigatórios!");
                     }
 
-                    if ((email === "") || (typeof email === null)) {
+                    if (email === "" || password === "") {
                         alert("Preencha os campos obrigatórios!");
                     }
 
