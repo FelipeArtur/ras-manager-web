@@ -134,8 +134,6 @@ app.get("/projeto/:id", (req, res) => {
 app.get("/skill", (req, res) => {
     let query = "SELECT * FROM SKILL";
 
-    console.log(query);
-
     db.query(query, (error, result) => {
         res.json(result);
     });
@@ -167,6 +165,31 @@ app.get("/skills/:tipo", (req, res) => {
 
 app.post("/membro/skill/adiciona/:skid/:membroid", (req, res) => {
     let query = "INSERT INTO SKILL_PESSOA VALUES (null, "  + req.params.skid + ", " + req.params.membroid + ")";
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+app.get("/membros-skill", (req, res) => {
+    let query = `SELECT * FROM SKILL_PESSOA`;
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+app.get("/membro-skill/:pessoaID", (req, res) => {
+    let query = `SELECT * FROM SKILL_PESSOA WHERE PESSOA_ID = ${req.params.pessoaID}`;
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+app.delete("/remove-membro-skill/:membroid", (req, res) => {
+    let query = `DELETE FROM SKILL_PESSOA WHERE PESSOA_ID = ${req.params.membroid}`;
+
     db.query(query, (error, result) => {
         res.json(result);
     });
