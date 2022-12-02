@@ -45,7 +45,7 @@ export default function ReuniaoView() {
 
             <button className="deletar-reuniao-btn"
                 onClick={(_) => {
-                    Axios.delete(`http://localhost:3001/reuniao/deletar/${id}`).then((_) => {
+                    Axios.delete(`http://localhost:3001/deletar-reuniao/${id}`).then((_) => {
                         window.location.href = "http://localhost:3000/reunioes";
                     }).finally(() => {
                         alert(`Reunião [${id}] deletada com sucesso!`);

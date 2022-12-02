@@ -31,10 +31,10 @@ export default function Habilidades() {
 
     function handleChangeBox(e, value) {
         if (e.target.checked) {
-            Axios.post(`http://localhost:3001/membro/skill/adiciona/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
+            Axios.post(`http://localhost:3001/adiciona-skill-membro/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
         }
         if (!e.target.checked) {
-            Axios.delete(`http://localhost:3001/membro/skill/remove/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
+            Axios.delete(`http://localhost:3001/remover-membro-skill/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
         }
     }
 

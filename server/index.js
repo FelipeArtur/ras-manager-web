@@ -163,7 +163,7 @@ app.get("/skills/:tipo", (req, res) => {
 });
 
 
-app.post("/membro/skill/adiciona/:skid/:membroid", (req, res) => {
+app.post("/adiciona-skill-membro/:skid/:membroid", (req, res) => {
     let query = `INSERT INTO SKILL_PESSOA VALUES (null, ${req.params.skid}, ${req.params.membroid})`;
     db.query(query, (error, result) => {
         res.json(result);
@@ -196,7 +196,7 @@ app.delete("/remove-membro-skill/:membroid", (req, res) => {
 
 });
 
-app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
+app.delete("/remover-membro-skill/:skid/:membroid", (req, res) => {
     let query = `DELETE FROM SKILL_PESSOA WHERE SKILL_ID = ${req.params.skid} and PESSOA_ID = ${req.params.membroid}`;
 
     db.query(query, (error, result) => {
@@ -207,7 +207,7 @@ app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
+app.post("/cadastrar-membro/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
     let query = `INSERT INTO PESSOA VALUES (NULL, NULL, '${req.params.nome}', '2022-09-20', '2022-09-20', '${req.params.email}', '${req.params.cpf} ', '${req.params.senha}', '${req.params.telefone}', 'ATIVO');`;
 
     db.query(query, (error, result) => {
@@ -218,8 +218,8 @@ app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => 
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE EVENTO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/eventos/adicionar/:descricao/:responsavelID/:palestrante/:localizacao", (req, res) => {
-    let query = `INSERT INTO EVENTO VALUES (NULL, ${req.params.responsavelID}, '${req.params.descricao}', '2022-09-20', '${req.params.localizacao}', '${req.params.palestrante}');`;
+app.post("/adicionar-evento/:descricao/:responsavelID/:palestrante/:localizacao/:status", (req, res) => {
+    let query = `INSERT INTO EVENTO VALUES (NULL, ${req.params.responsavelID}, '${req.params.descricao}', '2022-09-20', '${req.params.localizacao}', '${req.params.palestrante}', '${req.params.status}');`;
 
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
@@ -229,7 +229,7 @@ app.post("/eventos/adicionar/:descricao/:responsavelID/:palestrante/:localizacao
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE REUNIÃO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/reuniao/adicionar/:descricao/:localizacao/:datahora/:responsavel/:ata", (req, res) => {
+app.post("/adicionar-reuniao/:descricao/:localizacao/:datahora/:responsavel/:ata", (req, res) => {
     let query = `INSERT INTO REUNIAO VALUES (null, ${req.params.responsavel}, '${req.params.descricao}', '${req.params.datahora}', '${req.params.localizacao}', '${req.params.ata}')`;
 
     db.query(query, (error, result) => {
@@ -240,7 +240,7 @@ app.post("/reuniao/adicionar/:descricao/:localizacao/:datahora/:responsavel/:ata
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE PROJETO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/projetos/adicionar/:descricao/:responsavelID/:status", (req, res) => {
+app.post("/adicionar-projeto/:descricao/:responsavelID/:status", (req, res) => {
     let query = `INSERT INTO PROJETO VALUES (null, ${req.params.responsavelID} , '${req.params.descricao}', '${req.params.status}')`;
 
     db.query(query, (error, result) => {
@@ -253,7 +253,7 @@ app.post("/projetos/adicionar/:descricao/:responsavelID/:status", (req, res) => 
 
 //#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO ] //#//#//#//#//#//#//#//#//#
 
-app.delete("/membro/deletar/:id", (req, res) => {
+app.delete("/deletar-membro/:id", (req, res) => {
     let query = `DELETE FROM PESSOA WHERE PESSOA_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
@@ -264,7 +264,7 @@ app.delete("/membro/deletar/:id", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ DELETAR EVENTO ] //#//#//#//#//#//#//#//#//#
 
-app.delete("/evento/deletar/:id", (req, res) => {
+app.delete("/deletar-evento/:id", (req, res) => {
     let query = `DELETE FROM EVENTO WHERE EVENTO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
@@ -275,7 +275,7 @@ app.delete("/evento/deletar/:id", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ DELETAR REUNIAO ] //#//#//#//#//#//#//#//#//#
 
-app.delete("/reuniao/deletar/:id", (req, res) => {
+app.delete("/deletar-reuniao/:id", (req, res) => {
     let query = `DELETE FROM REUNIAO WHERE REUNIAO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
@@ -286,7 +286,7 @@ app.delete("/reuniao/deletar/:id", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ DELETAR PROJETO ] //#//#//#//#//#//#//#//#//#
 
-app.delete("/projeto/deletar/:id", (req, res) => {
+app.delete("/deletar-projeto/:id", (req, res) => {
     let query = `DELETE FROM PROJETO WHERE PROJETO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
@@ -297,7 +297,7 @@ app.delete("/projeto/deletar/:id", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO DO PROJETO ATUAL ] //#//#//#//#//#//#//#//#//#
 
-app.delete("/membro-projeto/deletar/:pessoaID/:projetoID", (req, res) => {
+app.delete("/deletar-membro-projeto/:pessoaID/:projetoID", (req, res) => {
     let query = `DELETE FROM PROJETO_PESSOA WHERE PROJETO_ID = ${req.params.projetoID} AND PESSOA_ID = ${req.params.pessoaID}`;
 
     db.query(query, (error, result) => {

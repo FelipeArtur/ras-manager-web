@@ -50,7 +50,7 @@ export default function MembroView() {
 
                             {value.PROJETO_ID !== null ? 
                             <button className="remove-from-project-btn" onClick={(_) => {
-                                Axios.delete(`http://localhost:3001/membro-projeto/deletar/${id}/${value.PROJETO_ID}`).then((_) => {
+                                Axios.delete(`http://localhost:3001/deletar-membro-projeto/${id}/${value.PROJETO_ID}`).then((_) => {
                                     window.location.href = `http://localhost:3000/membro/${id}`;
                                 }).finally(() => {
                                     alert(`${value.NOME} foi removido(a) do projeto [${value.PROJETO_ID}] com sucesso!`)
@@ -66,7 +66,7 @@ export default function MembroView() {
 
                             <button className="deletar-membro-btn"
                                 onClick={(_) => {
-                                    Axios.delete(`http://localhost:3001/membro/deletar/${id}`).then((_) => {
+                                    Axios.delete(`http://localhost:3001/deletar-membro/${id}`).then((_) => {
                                         window.location.href = "http://localhost:3000/membros";
                                     }).finally(() => {
                                         alert(`Membro [${id}] deletado com sucesso!`);

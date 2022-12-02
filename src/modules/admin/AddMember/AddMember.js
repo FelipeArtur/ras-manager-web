@@ -60,7 +60,7 @@ export default function AddMember() {
 
             <button className="next-member-register"
                 onClick={() => {
-                    Axios.post("http://localhost:3001/pessoas/cadastrar/" + nome + "/" + email + "/" + senha + "/" + cpf + "/" + telefone).then((response) => {
+                    Axios.post(`http://localhost:3001/cadastrar-membro/${nome}/${email}/${senha}/${cpf}/${telefone}`).then((response) => {
                         window.location.href = "http://localhost:3000/cadastro/habilidades";
                     }).catch(() => {
                         alert("ERRO: Preencha os campos do membro com informações válidas!");

@@ -58,15 +58,7 @@ export default function AddProject() {
                 (typeof statusList != "undefined" && statusList.map((value) => {
                     return <DropdownTile key={value} nomePessoa={value}
                     onClick={() => {
-                        if (value === "EM PROGRESSO") {
-                            selectedStatus("EMPROGRESSO");
-                        }
-                        if (value === "CONCLUÍDO") {
-                            selectedStatus("CONCLUIDO");
-                        }
-                        if (value === "ABANDONADO") {
-                            selectedStatus(value);
-                        }
+                        selectedStatus(value.replace(" ", ""));
                         handleButtonStatus();
                     }}
                 />
@@ -98,7 +90,7 @@ export default function AddProject() {
             </button>
 
             <button className="criar-projeto-btn" onClick={() => {
-                Axios.post("http://localhost:3001/projetos/adicionar/" + descricao + "/" + responsavelID + "/" + status).then((response) => {
+                Axios.post(`http://localhost:3001/adicionar-projeto/${descricao}/${responsavelID}/${status}`).then((response) => {
 
                     let data = response.data;
 
