@@ -10,8 +10,8 @@
 - [x] Deletar projeto
 - [x] Deletar reunião
 
-- [ ] `ALERT` para usuário não autenticado
-- [ ] Ajeitar os `ALERT` para: deletar membro, deletar evento e deletar reunião (tirar do __finally__)
+- [x] `ALERT` para usuário não autenticado
+- [x] Ajeitar os `ALERT` para: deletar membro, deletar evento e deletar reunião (tirar do __finally__)
 
 :::: BANCO ::::
 - [x] Atualizar tabela EVENTO_PESSOA ao colocar membro como responsável
@@ -23,10 +23,10 @@
 - [ ] Atualizar projeto
 - [ ] Atualizar reunião
 
-- [ ] Melhorar e PADRONIZAR aparência de alguns botões
+- [x] Melhorar e PADRONIZAR aparência de alguns botões
 
 > Próximos passos
 
 - [x] Remover membro de um projeto (através da View única do membro) --> {atualiza tabelas: `PESSOA` e `PROJETO_PESSOA`}
-- [ ] Remover membro de um evento (através da View única do membro) --> {atualiza tabela: `EVENTO_PESSOA`}
-- [ ] Remover membro de uma reunião (através da View única do membro) --> {atualiza tabela: `REUNIAO_PESSOA`}
+- [x] Remover membro de um evento (através da View única do membro) --> {atualiza tabela: `EVENTO_PESSOA`}
+- [x] Remover membro de uma reunião (através da View única do membro) --> {atualiza tabela: `REUNIAO_PESSOA`}

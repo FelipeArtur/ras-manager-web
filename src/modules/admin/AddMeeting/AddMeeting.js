@@ -83,8 +83,12 @@ export default function AddMeeting() {
             </button>
 
             <button className="criar-reuniao-btn" onClick={() => {
-                Axios.post(`http://localhost:3001/adicionar-reuniao/${descricao}/${localizacao}/${dataHora}/${responsavelID}/${ata}`).then((_) => {
-                    window.location.href = "http://localhost:3000/reunioes";
+                Axios.post(`http://localhost:3001/adicionar-reuniao/${descricao}/${localizacao}/${dataHora}/${responsavelID}/${ata}`).then((response) => {
+                    if (response.data.error) {
+                        alert(`ERRO: ${response.data.error.sqlMessage}`);
+                    } else {
+                        window.location.href = "http://localhost:3000/reunioes";
+                    }
                 }).catch(() => {
                     alert("ERRO: Preencha os campos da reunião com informações válidas!");
                 });

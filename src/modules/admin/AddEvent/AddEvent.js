@@ -112,7 +112,13 @@ export default function AddEvent() {
             <button className="add-event-btn"
                 onClick={() => {
                     Axios.post(`http://localhost:3001/adicionar-evento/${descricao}/${responsavelID}/${palestrante}/${localizacao}/${status}`).then((response) => {
-                        window.location.href = "http://localhost:3000/eventos";
+
+                        if (response.data.error) {
+                            alert(`ERRO: ${response.data.error.sqlMessage}`);
+                        } else {
+                            window.location.href = "http://localhost:3000/eventos";
+                        }
+
                     }).catch(() => {
                         alert("ERRO: Preencha os campos do evento com informações válidas!");
                     });
