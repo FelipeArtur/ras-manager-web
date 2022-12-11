@@ -13,15 +13,32 @@ export default function MembroView() {
     const [pessoa, setPessoa] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/pessoa/" + id).then((response) => {
+        Axios.get(`http://localhost:3001/pessoa/${id}`).then((response) => {
 
             let data = response.data;
 
             if (data.error) {
                 alert(`ERRO: ${data.error.sqlMessage}`);
+            } else {
+                setPessoa(response.data);
             }
 
-            setPessoa(response.data);
+        });
+    }, [id]);
+
+    const [cargo, setCargo] = useState("");
+
+    useEffect(() => {
+        Axios.get(`http://localhost:3001/cargo-pessoa/${id}`).then((response) => {
+
+            let data = response.data;
+
+            if (data.error) {
+                alert(`ERRO: ${data.error.sqlMessage}`);
+            } else {
+                setCargo(response.data.at(0).NOME_CARGO);
+            }
+
         });
     }, [id]);
 
@@ -34,7 +51,10 @@ export default function MembroView() {
                         <div className="member-view-column">
                             <div className="selected-member-name">{value.NOME}</div>
                             <a className="selected-member-email" href={`mailto:${value.EMAIL}`}>{value.EMAIL}</a>
-                            <div className="selected-member-ativo">(Usuário {value.ATIVO})</div>
+                            <div className="selected-member-cargo">
+                                {`Cargo do usuário: ${cargo} |`}
+                                <Link className="atualiza-cargo-btn" to={`/atualizar-cargo-membro/${id}`}>Atualizar cargo</Link>
+                            </div>
 
                             <div className="selected-member-in-project-row">
                                 <div className="selected-member-data-entered-course">
