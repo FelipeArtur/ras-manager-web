@@ -9,6 +9,7 @@ import Catalogo from './modules/catalogo/Catalogo';
 import InfoDev from './modules/catalogo/components/InfoDev/InfoDev';
 import EventoView from './modules/catalogo/Eventos/components/EventoView/EventoView';
 import Eventos from './modules/catalogo/Eventos/Eventos';
+import AtualizarCargo from './modules/catalogo/MembrosRAS/components/AtualizarCargo/AtualizarCargo';
 import MembroHabilidades from './modules/catalogo/MembrosRAS/components/MembroHabilidades/MembroHabilidades';
 import MembroView from './modules/catalogo/MembrosRAS/components/MembroView/MembroView';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
@@ -37,6 +38,8 @@ export default function AppRoutes () {
             <Route exact path="/projetos" element={<Projetos/>}/>
             <Route exact path="/projeto/:id" element={<ProjetoView/>}/>
             <Route exact path="/projetos/adicionar" element={<AddProject/>}/>
+
+            <Route exact path="/atualizar-cargo-membro/:id" element={<AtualizarCargo/>}/>
 
             {/* ------------------------------------------------------------- */}
 

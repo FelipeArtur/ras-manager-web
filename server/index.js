@@ -122,6 +122,15 @@ app.get("/cargo-pessoa/:pessoaID", (req, res) => {
 
 });
 
+app.put("/atualiza-cargo-pessoa/:pessoaID/:cargo", (req, res) => {
+    let query = `UPDATE CARGO SET NOME_CARGO = '${req.params.cargo}' WHERE PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
 app.get("/responsavel-reuniao/:pessoaID", (req, res) => {
     let query = `SELECT NOME FROM PESSOA P INNER JOIN REUNIAO R ON P.PESSOA_ID = R.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
 
