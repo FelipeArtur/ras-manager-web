@@ -16,13 +16,14 @@ export default function Reunioes() {
     }, []);
 
     return (
-        <BaseCatalogo addBtnPath={""} title={
+        <BaseCatalogo addBtnPath={"/reunioes/adicionar"} title={
             <h1 className="catalogo-sub-title">REUNIÕES</h1>
         } children={
             <>
             {typeof reunioesList != "undefined" && reunioesList.map((value) => {
                 return <ReuniaoCard
                     key={value.REUNIAO_ID}
+                    id={value.REUNIAO_ID}
                     nome={value.DESCRICAO}
                     local={value.LOCALIZACAO}
                     horario={value.DT_HORA}

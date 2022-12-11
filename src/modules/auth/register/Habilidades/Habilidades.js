@@ -7,21 +7,20 @@ import { Link } from "react-router-dom";
 
 export default function Habilidades() {
 
+    const [habilidades, setHabilidades] = useState([]);
     const [habilidades_soft, setHabilidadesSoft] = useState([]);
     const [habilidades_hard, setHabilidadesHard] = useState([]);
 
     const [pessoaLast, setPessoaLast] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/skills/SOFT").then((response) => {
-            setHabilidadesSoft(response.data);
+        Axios.get("http://localhost:3001/skills").then((response) => {
+            setHabilidades(response.data);
+
+            setHabilidadesSoft(habilidades.filter((value) => value.TIPO_SKILL === "SOFT"));
+            setHabilidadesHard(habilidades.filter((value) => value.TIPO_SKILL === "HARD"));
         });
-    }, []);
-    useEffect(() => {
-        Axios.get("http://localhost:3001/skills/HARD").then((response) => {
-            setHabilidadesHard(response.data);
-        });
-    }, []);
+    }, [habilidades]);
     
     useEffect(() => {
         Axios.get("http://localhost:3001/pessoa-last-registered").then((response) => {
@@ -31,10 +30,10 @@ export default function Habilidades() {
 
     function handleChangeBox(e, value) {
         if (e.target.checked) {
-            Axios.post("http://localhost:3001/membro/skill/adiciona/" + value.SKILL_ID + "/" + pessoaLast[0].PESSOA_ID);
+            Axios.post(`http://localhost:3001/adiciona-skill-membro/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
         }
         if (!e.target.checked) {
-            Axios.delete("http://localhost:3001/membro/skill/remove/" + value.SKILL_ID + "/" + pessoaLast[0].PESSOA_ID);
+            Axios.delete(`http://localhost:3001/remover-membro-skill/${value.SKILL_ID}/${pessoaLast[0].PESSOA_ID}`);
         }
     }
 
@@ -55,9 +54,8 @@ export default function Habilidades() {
                         })}
                 </div>
                     </div>
-                    <button>VOLTAR</button>
-                    <button>
-                        <Link to={"/membros"}>FINALIZAR CADASTRO</Link>
+                    <button className="btn-finalizar-cad">
+                        <Link className="btn-finalizar-cad-link" to={"/membros"}>FINALIZAR CADASTRO</Link>
                     </button>
             </div>
         </>

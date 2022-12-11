@@ -17,9 +17,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-///
-/// Data retrived: All [Pessoa] table rows
-///
 app.get("/pessoas", (req, res) => {
     let query = "SELECT * FROM PESSOA";
 
@@ -29,12 +26,8 @@ app.get("/pessoas", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
-///
 app.get("/pessoa/:id", (req, res) => {
-    let query = "SELECT * FROM PESSOA WHERE PESSOA_ID =  " + "'" + (req.params.id) + "'";
-
+    let query = `SELECT * FROM PESSOA WHERE PESSOA_ID = ${req.params.id}`;
     
     db.query(query, (error, result) => {
         res.json(result);
@@ -50,20 +43,14 @@ app.get("/pessoa-last-registered", (req, res) => {
     });
 });
 
-///
-/// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
-///
 app.get("/auth/:email", (req, res) => {
-    let query = "SELECT NOME, EMAIL, SENHA FROM PESSOA WHERE EMAIL = " + "'" + (req.params.email.toLocaleLowerCase()) + "'";
+    let query = `SELECT NOME, EMAIL, SENHA FROM PESSOA WHERE EMAIL = '${req.params.email.toLocaleLowerCase()}'`;
     db.query(query, (error, result) => {
         res.json(result);
     });
 
 });
 
-///
-/// Data retrived: All [Evento] table rows
-///
 app.get("/eventos", (req, res) => {
     let query = "SELECT * FROM EVENTO";
 
@@ -73,20 +60,14 @@ app.get("/eventos", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Evento] column {EVENTO_ID} and retrives respective data
-///
 app.get("/evento/:id", (req, res) => {
-    let query = "SELECT * FROM EVENTO WHERE EVENTO_ID =  " + "'" + (req.params.id) + "'";
+    let query = `SELECT * FROM EVENTO WHERE EVENTO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
         res.json(result);
     });
 });
 
-///
-/// Data retrived: All [Reuniao] table rows
-///
 app.get("/reunioes", (req, res) => {
     let query = "SELECT * FROM REUNIAO";
 
@@ -96,11 +77,8 @@ app.get("/reunioes", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Reuniao] column {REUNIAO_ID} and retrives respective data
-///
 app.get("/reuniao/:id", (req, res) => {
-    let query = "SELECT * FROM REUNIAO WHERE REUNIAO_ID = " + "'" + (req.params.id) + "'";
+    let query = `SELECT * FROM REUNIAO WHERE REUNIAO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
         res.json(result);
@@ -108,9 +86,6 @@ app.get("/reuniao/:id", (req, res) => {
 
 });
 
-///
-/// Data retrived: All [Projeto] table rows
-///
 app.get("/projetos", (req, res) => {
     let query = "SELECT * FROM PROJETO";
 
@@ -120,11 +95,8 @@ app.get("/projetos", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Projeto] column {PROJETO_ID} and retrives respective data
-///
 app.get("/projeto/:id", (req, res) => {
-    let query = "SELECT * FROM PROJETO WHERE PROJETO_ID = " + "'" + (req.params.id) + "'";
+    let query = `SELECT * FROM PROJETO WHERE PROJETO_ID = ${req.params.id}`;
 
     db.query(query, (error, result) => {
         res.json(result);
@@ -132,10 +104,17 @@ app.get("/projeto/:id", (req, res) => {
 
 });
 
-app.get("/skill", (req, res) => {
+app.get("/skills", (req, res) => {
     let query = "SELECT * FROM SKILL";
 
-    console.log(query);
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+
+});
+
+app.get("/cargo-pessoa/:pessoaID", (req, res) => {
+    let query = `SELECT NOME_CARGO FROM CARGO c INNER JOIN PESSOA P ON c.PESSOA_ID = p.PESSOA_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
 
     db.query(query, (error, result) => {
         res.json(result);
@@ -143,39 +122,48 @@ app.get("/skill", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Skill] column {SKILL_ID} and retrives respective data
-///
-app.get("/skill/:id", (req, res) => {
-    let query = "SELECT * FROM SKILL WHERE SKILL_ID = " + "'" + (req.params.id) + "'";
+app.get("/responsavel-reuniao/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN REUNIAO R ON P.PESSOA_ID = R.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
 
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
+app.get("/responsavel-evento/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN EVENTO E ON P.PESSOA_ID = E.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
+app.get("/responsavel-projeto/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN PROJETO PR ON P.PESSOA_ID = PR.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
+app.post("/adiciona-skill-membro/:skid/:membroid", (req, res) => {
+    let query = `INSERT INTO SKILL_PESSOA VALUES (null, ${req.params.skid}, ${req.params.membroid})`;
     db.query(query, (error, result) => {
         res.json(result);
     });
 
 });
 
-
-app.get("/skills/:tipo", (req, res) => {
-    let query = "SELECT * FROM SKILL WHERE TIPO_SKILL = " + "'" + (req.params.tipo) + "'";
-
+app.get("/membro-skill/:pessoaID", (req, res) => {
+    let query = `SELECT TIPO_SKILL, NOME_SKILL FROM SKILL sk INNER JOIN SKILL_PESSOA sp ON sk.SKILL_ID = sp.SKILL_ID WHERE sp.PESSOA_ID = ${req.params.pessoaID}`;
     db.query(query, (error, result) => {
         res.json(result);
     });
 
 });
 
-
-app.post("/membro/skill/adiciona/:skid/:membroid", (req, res) => {
-    let query = "INSERT INTO SKILL_PESSOA VALUES (null, "  + req.params.skid + ", " + req.params.membroid + ")";
-    db.query(query, (error, result) => {
-        res.json(result);
-    });
-
-});
-
-app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
-    let query = "DELETE FROM SKILL_PESSOA WHERE SKILL_ID = " + req.params.skid + " and PESSOA_ID = " + req.params.membroid;
+app.delete("/remover-membro-skill/:skid/:membroid", (req, res) => {
+    let query = `DELETE FROM SKILL_PESSOA WHERE SKILL_ID = ${req.params.skid} and PESSOA_ID = ${req.params.membroid}`;
 
     db.query(query, (error, result) => {
         res.json(result);
@@ -185,8 +173,8 @@ app.delete("/membro/skill/remove/:skid/:membroid", (req, res) => {
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE USUÁRIO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
-    let query = "INSERT INTO PESSOA VALUES (NULL, NULL, '" + req.params.nome + "', '2022-09-20', '2022-09-20', '" + req.params.email + "', '" + req.params.cpf + "', '" + req.params.senha + "', '"  + req.params.telefone + "', 'ATIVO');";
+app.post("/cadastrar-membro/:nome/:email/:senha/:cpf/:telefone", (req, res) => {
+    let query = `INSERT INTO PESSOA VALUES (NULL, NULL, '${req.params.nome}', '2022-09-20', '2022-09-20', '${req.params.email}', '${req.params.cpf} ', '${req.params.senha}', '${req.params.telefone}', 'ATIVO');`;
 
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
@@ -196,8 +184,87 @@ app.post("/pessoas/cadastrar/:nome/:email/:senha/:cpf/:telefone", (req, res) => 
 
 //#//#//#//#//#//#//#//#//# [ CADASTRO DE EVENTO ] //#//#//#//#//#//#//#//#//#
 
-app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao", (req, res) => {
-    let query = "INSERT INTO EVENTO VALUES (NULL, " + req.params.responsavel + ", '" + req.params.descricao + "', '2022-09-20', '" + req.params.localizacao + "', '" + req.params.palestrante + "');";
+app.post("/adicionar-evento/:descricao/:responsavelID/:palestrante/:localizacao/:status", (req, res) => {
+    let query = `INSERT INTO EVENTO VALUES (NULL, ${req.params.responsavelID}, '${req.params.descricao}', '2022-09-20', '${req.params.localizacao}', '${req.params.palestrante}', '${req.params.status}');`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ CADASTRO DE REUNIÃO ] //#//#//#//#//#//#//#//#//#
+
+app.post("/adicionar-reuniao/:descricao/:localizacao/:datahora/:responsavel/:ata", (req, res) => {
+    let query = `INSERT INTO REUNIAO VALUES (null, ${req.params.responsavel}, '${req.params.descricao}', '${req.params.datahora}', '${req.params.localizacao}', '${req.params.ata}')`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ CADASTRO DE PROJETO ] //#//#//#//#//#//#//#//#//#
+
+app.post("/adicionar-projeto/:descricao/:responsavelID/:status", (req, res) => {
+    let query = `INSERT INTO PROJETO VALUES (null, ${req.params.responsavelID} , '${req.params.descricao}', '${req.params.status}')`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#//#
+
+//#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/deletar-membro/:id", (req, res) => {
+    let query = `DELETE FROM PESSOA WHERE PESSOA_ID = ${req.params.id}`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR EVENTO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/deletar-evento/:id", (req, res) => {
+    let query = `DELETE FROM EVENTO WHERE EVENTO_ID = ${req.params.id}`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR REUNIAO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/deletar-reuniao/:id", (req, res) => {
+    let query = `DELETE FROM REUNIAO WHERE REUNIAO_ID = ${req.params.id}`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR PROJETO ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/deletar-projeto/:id", (req, res) => {
+    let query = `DELETE FROM PROJETO WHERE PROJETO_ID = ${req.params.id}`;
+
+    db.query(query, (error, result) => {
+        if (error) return res.json({error: error});
+        return res.json(result);
+    });
+})
+
+//#//#//#//#//#//#//#//#//# [ DELETAR MEMBRO DO PROJETO ATUAL ] //#//#//#//#//#//#//#//#//#
+
+app.delete("/deletar-membro-projeto/:pessoaID/:projetoID", (req, res) => {
+    let query = `DELETE FROM PROJETO_PESSOA WHERE PROJETO_ID = ${req.params.projetoID} AND PESSOA_ID = ${req.params.pessoaID}`;
 
     db.query(query, (error, result) => {
         if (error) return res.json({error: error});
@@ -208,5 +275,5 @@ app.post("/eventos/adicionar/:descricao/:responsavel/:palestrante/:localizacao",
 const _serverPort = 3001;
 
 app.listen(_serverPort, () => {
-    console.log("RUNNING SERVER AT PORT: " + _serverPort);
+    console.log(`RUNNING SERVER AT PORT: ${_serverPort}`);
 })

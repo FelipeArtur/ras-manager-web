@@ -16,18 +16,14 @@
     font-size: 88%;
     font-weight: 800;
     color: #57074A;
+    text-decoration-line: none;
 }
 
-.project-local {
-    font-size: 65%;
+.project-resp {
+    font-size: 75%;
     font-weight: 600;
     color: #57074A;
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
-.project-time {
-    font-size: 60%;
-    font-weight: 600;
-    color: #57074A;
-}

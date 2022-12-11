@@ -7,7 +7,7 @@ export default class CustomButton extends React.Component {
         return(
             <button className="custom-btn" onClick={this.props.onClick}>
                 ENTRAR
-                {/* <Link to={this.props.navTo} className="custom-btn-text">{this.props.text}</Link> */}
+                {/* <Link to={this.props.navTo} className="custom-btn-text"></Link> */}
             </button>
         );
     }

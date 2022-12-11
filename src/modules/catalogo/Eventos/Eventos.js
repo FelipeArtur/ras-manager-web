@@ -21,6 +21,7 @@ export default function Eventos() {
                     {typeof listEvents != "undefined" && listEvents.map((value) => {
                         return <EventoCard
                         title={"" + value.DESCRICAO}
+                        id={value.EVENTO_ID}
                         date={"" + value.DT_HORA}
                         local={"" + value.LOCALIZACAO}
                     />

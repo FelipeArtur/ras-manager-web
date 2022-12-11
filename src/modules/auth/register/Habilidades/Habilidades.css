@@ -31,3 +31,14 @@
     font-size: 90%;
     text-decoration-line: underline;
 }
+
+.btn-finalizar-cad {
+    background-color: transparent;
+    border-style: none;
+}
+
+.btn-finalizar-cad-link {
+    color: #721764;
+    font-weight: 600;
+    text-decoration-line: none;
+}

@@ -37,7 +37,7 @@ export default function Login() {
                         id="login-input-user" 
                         type="text" 
                         placeholder="Usuário" 
-                        maxLength={35}
+                        maxLength={50}
                         onChange={(e) => handleChangeEmail(e)}
                         />
                         <CustomInput 
@@ -50,19 +50,34 @@ export default function Login() {
                     </div>
                     <CustomButton 
                     onClick={()=> {
-                Axios.get("http://localhost:3001/auth/" + email).then((response) => {
-                    console.log(response.data);
+                Axios.get(`http://localhost:3001/auth/${email}`).then((response) => {
                     setPessoas(response.data);
 
-                }).finally(() => {
-                    let person = pessoas.at(0);
-                    if (person.SENHA === password) {
-                        // NAVEGAR PRA PRÓXIMA PÁGINA
-                        route="/catalogo";
-                        console.log("Usuário autenticado!");
-                    } else {
-                        console.log("Autenticação falhou :(");
+                    if (typeof response === "undefined") {
+                        alert("Preencha os campos obrigatórios!");
                     }
+
+                    if (email === "" || password === "") {
+                        alert("Preencha os campos obrigatórios!");
+                    }
+
+                    if (response.data.length === 0) {
+                        alert("Autenticação falhou!");
+                    } else {
+                        let person = pessoas.at(0);
+                        if (person.SENHA === password) {
+                            window.location.href = "http://localhost:3000/catalogo";
+                        } else {
+                            alert("Senha incorreta!");
+                        }
+                    }
+
+                    if (response.data.error) {
+                        alert("Autenticação falhou!");
+                    }
+
+                }).catch((_) => {
+                    alert(`Autenticação falhou! Preencha os campos obrigatórios, ou então verifique se seus dados estão corretos.`);
                 });
         return handleClickBtn;
                     }}

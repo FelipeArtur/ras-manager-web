@@ -1,6 +1,5 @@
 import Axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import CustomInput from "../../../utils/components/CustomInput/CustomInput";
 
 import "./AddMember.css";
@@ -53,19 +52,25 @@ export default function AddMember() {
                 maxLength={15}
             />
 
-            <button className="back-to-members">VOLTAR</button>
+            <button className="back-to-members"
+                onClick={() => {
+                    window.location.href = "http://localhost:3000/membros";
+                }}
+            >VOLTAR</button>
 
             <button className="next-member-register"
                 onClick={() => {
-                    Axios.post("http://localhost:3001/pessoas/cadastrar/" + nome + "/" + email + "/" + senha + "/" + cpf + "/" + telefone).then((response) => {
-                        ///
+                    Axios.post(`http://localhost:3001/cadastrar-membro/${nome}/${email}/${senha}/${cpf}/${telefone}`).then((response) => {
+                        if (response.data.error) {
+                            alert(`ERRO: ${response.data.error.sqlMessage}`);
+                        } else {
+                            window.location.href = "http://localhost:3000/cadastro/habilidades";
+                        }
+                    }).catch(() => {
+                        alert("ERRO: Preencha os campos do membro com informações válidas!");
                     });
                 }}
-            >SALVAR INFORMAÇÕES PESSOAIS</button>
-
-            <button>
-                <Link to={"/cadastro/habilidades"}>PRÓXIMO</Link>
-            </button>
+            >PRÓXIMO</button>
         </div>
     );
 }
