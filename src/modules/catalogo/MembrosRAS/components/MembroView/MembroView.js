@@ -47,16 +47,6 @@ export default function MembroView() {
                                     Ingressou no RAS em {sqlToJsDate(value.DT_INGRESSO_RAS)}
                                 </div>
                             </div>
-
-                            {value.PROJETO_ID !== null ? 
-                            <button className="remove-from-project-btn" onClick={(_) => {
-                                Axios.delete(`http://localhost:3001/deletar-membro-projeto/${id}/${value.PROJETO_ID}`).then((_) => {
-                                    window.location.href = `http://localhost:3000/membro/${id}`;
-                                }).finally(() => {
-                                    alert(`${value.NOME} foi removido(a) do projeto [${value.PROJETO_ID}] com sucesso!`)
-                                });
-                            }}>🠺 Remover este membro do projeto atual</button> 
-                            : null}
                             {value.PROJETO_ID !== null ? 
                             <button className="go-project-btn" onClick={(_) => {
                                 window.location.href = `http://localhost:3000/projeto/${value.PROJETO_ID}`;
