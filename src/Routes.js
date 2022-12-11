@@ -9,6 +9,7 @@ import Catalogo from './modules/catalogo/Catalogo';
 import InfoDev from './modules/catalogo/components/InfoDev/InfoDev';
 import EventoView from './modules/catalogo/Eventos/components/EventoView/EventoView';
 import Eventos from './modules/catalogo/Eventos/Eventos';
+import MembroHabilidades from './modules/catalogo/MembrosRAS/components/MembroHabilidades/MembroHabilidades';
 import MembroView from './modules/catalogo/MembrosRAS/components/MembroView/MembroView';
 import MembrosRAS from './modules/catalogo/MembrosRAS/MembrosRAS';
 import ProjetoView from './modules/catalogo/Projetos/components/ProjetoView/ProjetoView';
@@ -26,6 +27,7 @@ export default function AppRoutes () {
             <Route exact path="/membros" element={<MembrosRAS/>}/>
             <Route exact path="/membros/cadastrar" element={<AddMember/>}/>
             <Route exact path="/membro/:id" element={<MembroView/>}/>
+            <Route exact path="/habilidade-membro/:id" element={<MembroHabilidades/>}/>
             <Route exact path="/eventos" element={<Eventos/>}/>
             <Route exact path="/evento/:id" element={<EventoView/>}/>
             <Route exact path="/eventos/adicionar" element={<AddEvent/>}/>

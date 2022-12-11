@@ -63,7 +63,11 @@ export default function MembroView() {
                             }}>🠺 Ir para projeto</button> 
                             : null}
 
-
+                            <button className="habilidades-membro-btn"
+                                onClick={(_) => {
+                                    window.location.href = `http://localhost:3000/habilidade-membro/${id}`;
+                                }}
+                            >HABILIDADES DO MEMBRO</button>
                             <button className="deletar-membro-btn"
                                 onClick={(_) => {
                                     Axios.delete(`http://localhost:3001/deletar-membro/${id}`).then((response) => {

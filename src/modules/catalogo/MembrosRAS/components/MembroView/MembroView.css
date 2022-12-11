@@ -55,13 +55,24 @@
 /* -------------------------------------------------------------- */
 
 .deletar-membro-btn {
-    margin-top: 27%;
+    margin-top: 8%;
     padding-top: 4px;
     padding-bottom: 4px;
     align-self: center;
     background-color: red;
     color: white;
     width: 30%;
+    border-style: none;
+}
+
+.habilidades-membro-btn {
+    margin-top: 10%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    align-self: center;
+    background-color: #721764;
+    color: white;
+    width: 42%;
     border-style: none;
 }
 

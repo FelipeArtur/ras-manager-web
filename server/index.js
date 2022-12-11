@@ -17,9 +17,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-///
-/// Data retrived: All [Pessoa] table rows
-///
 app.get("/pessoas", (req, res) => {
     let query = "SELECT * FROM PESSOA";
 
@@ -29,9 +26,6 @@ app.get("/pessoas", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
-///
 app.get("/pessoa/:id", (req, res) => {
     let query = `SELECT * FROM PESSOA WHERE PESSOA_ID = ${req.params.id}`;
     
@@ -49,9 +43,6 @@ app.get("/pessoa-last-registered", (req, res) => {
     });
 });
 
-///
-/// It response by parsing [Pessoa] column {PESSOA_ID} and retrives respective data
-///
 app.get("/auth/:email", (req, res) => {
     let query = `SELECT NOME, EMAIL, SENHA FROM PESSOA WHERE EMAIL = '${req.params.email.toLocaleLowerCase()}'`;
     db.query(query, (error, result) => {
@@ -60,9 +51,6 @@ app.get("/auth/:email", (req, res) => {
 
 });
 
-///
-/// Data retrived: All [Evento] table rows
-///
 app.get("/eventos", (req, res) => {
     let query = "SELECT * FROM EVENTO";
 
@@ -72,9 +60,6 @@ app.get("/eventos", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Evento] column {EVENTO_ID} and retrives respective data
-///
 app.get("/evento/:id", (req, res) => {
     let query = `SELECT * FROM EVENTO WHERE EVENTO_ID = ${req.params.id}`;
 
@@ -83,9 +68,6 @@ app.get("/evento/:id", (req, res) => {
     });
 });
 
-///
-/// Data retrived: All [Reuniao] table rows
-///
 app.get("/reunioes", (req, res) => {
     let query = "SELECT * FROM REUNIAO";
 
@@ -95,9 +77,6 @@ app.get("/reunioes", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Reuniao] column {REUNIAO_ID} and retrives respective data
-///
 app.get("/reuniao/:id", (req, res) => {
     let query = `SELECT * FROM REUNIAO WHERE REUNIAO_ID = ${req.params.id}`;
 
@@ -107,9 +86,6 @@ app.get("/reuniao/:id", (req, res) => {
 
 });
 
-///
-/// Data retrived: All [Projeto] table rows
-///
 app.get("/projetos", (req, res) => {
     let query = "SELECT * FROM PROJETO";
 
@@ -119,9 +95,6 @@ app.get("/projetos", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Projeto] column {PROJETO_ID} and retrives respective data
-///
 app.get("/projeto/:id", (req, res) => {
     let query = `SELECT * FROM PROJETO WHERE PROJETO_ID = ${req.params.id}`;
 
@@ -131,7 +104,7 @@ app.get("/projeto/:id", (req, res) => {
 
 });
 
-app.get("/skill", (req, res) => {
+app.get("/skills", (req, res) => {
     let query = "SELECT * FROM SKILL";
 
     db.query(query, (error, result) => {
@@ -140,28 +113,14 @@ app.get("/skill", (req, res) => {
 
 });
 
-///
-/// It response by parsing [Skill] column {SKILL_ID} and retrives respective data
-///
-app.get("/skill/:id", (req, res) => {
-    let query = `SELECT * FROM SKILL WHERE SKILL_ID = ${req.params.id}`;
+app.get("/cargo-pessoa/:pessoaID", (req, res) => {
+    let query = `SELECT NOME_CARGO FROM CARGO c INNER JOIN PESSOA P ON c.PESSOA_ID = p.PESSOA_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
 
     db.query(query, (error, result) => {
         res.json(result);
     });
 
 });
-
-
-app.get("/skills/:tipo", (req, res) => {
-    let query = `SELECT * FROM SKILL WHERE TIPO_SKILL = '${req.params.tipo}'`;
-
-    db.query(query, (error, result) => {
-        res.json(result);
-    });
-
-});
-
 
 app.post("/adiciona-skill-membro/:skid/:membroid", (req, res) => {
     let query = `INSERT INTO SKILL_PESSOA VALUES (null, ${req.params.skid}, ${req.params.membroid})`;
@@ -171,25 +130,8 @@ app.post("/adiciona-skill-membro/:skid/:membroid", (req, res) => {
 
 });
 
-app.get("/membros-skill", (req, res) => {
-    let query = `SELECT * FROM SKILL_PESSOA`;
-    db.query(query, (error, result) => {
-        res.json(result);
-    });
-
-});
-
 app.get("/membro-skill/:pessoaID", (req, res) => {
-    let query = `SELECT * FROM SKILL_PESSOA WHERE PESSOA_ID = ${req.params.pessoaID}`;
-    db.query(query, (error, result) => {
-        res.json(result);
-    });
-
-});
-
-app.delete("/remove-membro-skill/:membroid", (req, res) => {
-    let query = `DELETE FROM SKILL_PESSOA WHERE PESSOA_ID = ${req.params.membroid}`;
-
+    let query = `SELECT TIPO_SKILL, NOME_SKILL FROM SKILL sk INNER JOIN SKILL_PESSOA sp ON sk.SKILL_ID = sp.SKILL_ID WHERE sp.PESSOA_ID = ${req.params.pessoaID}`;
     db.query(query, (error, result) => {
         res.json(result);
     });
