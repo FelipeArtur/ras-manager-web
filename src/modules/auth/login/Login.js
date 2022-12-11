@@ -53,28 +53,30 @@ export default function Login() {
                 Axios.get(`http://localhost:3001/auth/${email}`).then((response) => {
                     setPessoas(response.data);
 
-                    if (typeof response === "undefined") {
-                        alert("Preencha os campos obrigatórios!");
-                    }
-
                     if (email === "" || password === "") {
                         alert("Preencha os campos obrigatórios!");
-                    }
-
-                    if (response.data.length === 0) {
-                        alert("Autenticação falhou!");
                     } else {
-                        let person = pessoas.at(0);
-                        if (person.SENHA === password) {
-                            window.location.href = "http://localhost:3000/catalogo";
+                        if (typeof response === "undefined") {
+                            alert("Preencha os campos obrigatórios!");
+                        }
+                    }
+                    
+                    if (response.data.error) {
+                        alert("ERRO: Autenticação falhou!");
+                    } else {
+                        if (pessoas.length > 0) {
+                            let person = pessoas.at(0);
+                            if (person.SENHA === password) {
+                                window.location.href = "http://localhost:3000/catalogo";
+                            } else {
+                                alert("Senha incorreta!");
+                            }
                         } else {
-                            alert("Senha incorreta!");
+                            alert("ERRO: Autenticação falhou!");
                         }
                     }
 
-                    if (response.data.error) {
-                        alert("Autenticação falhou!");
-                    }
+
 
                 }).catch((_) => {
                     alert(`Autenticação falhou! Preencha os campos obrigatórios, ou então verifique se seus dados estão corretos.`);
