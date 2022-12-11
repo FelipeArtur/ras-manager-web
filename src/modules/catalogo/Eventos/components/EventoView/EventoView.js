@@ -16,17 +16,21 @@ export default function EventoView() {
         });
     }, [id]);
 
+    const [nomeResponsavel, setResponsavel] = useState("");
 
     return (
         <div className="evento-view-card">        
             <div className="evento-card-options">
                     <Link to={"/eventos"} className="evento-card-close">X</Link>
                 {typeof evento !== "undefined" && evento.map((value) => {
+                    Axios.get(`http://localhost:3001/responsavel-evento/${value.RESPONSAVEL_ID}`).then((response) => {
+                        setResponsavel(response.data.at(0).NOME);
+                    });
                     return (<>
                         <div className="event-view-column">
                             <div className="selected-event-descricao">{value.DESCRICAO}</div>
                             <div className="selected-event-palestrante">Palestrante: {value.PALESTRANTE}</div>
-                            <div className="selected-event-ativo">(Responsável: {value.RESPONSAVEL_ID})</div>
+                            <div className="selected-event-ativo">(Responsável: {nomeResponsavel})</div>
 
 
                             <div className="selected-event-in-data-row">
