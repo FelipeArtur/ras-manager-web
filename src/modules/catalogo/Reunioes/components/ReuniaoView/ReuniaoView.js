@@ -15,15 +15,20 @@ export default function ReuniaoView() {
         });
     }, [id]);
 
+    const [nomeResponsavel, setResponsavel] = useState("");
+
     return(
         <div className="reuniao-view-card">
             <div className="reuniao-card-options">
                     <Link to={"/reunioes"} className="reuniao-card-close">X</Link>
                 {typeof reuniao !== "undefined" && reuniao.map((value) => {
+                    Axios.get(`http://localhost:3001/responsavel-reuniao/${value.RESPONSAVEL_ID}`).then((response) => {
+                        setResponsavel(response.data.at(0).NOME);
+                    });
                     return (<>
                         <div className="reuniao-view-column">
                             <div className="selected-reuniao-descricao">{value.DESCRICAO}</div>
-                            <div className="selected-reuniao-responsavel">(Responsável: {value.RESPONSAVEL_ID})</div>
+                            <div className="selected-reuniao-responsavel">(Responsável: {nomeResponsavel})</div>
 
 
                             <div className="selected-reuniao-info-row">

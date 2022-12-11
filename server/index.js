@@ -122,6 +122,30 @@ app.get("/cargo-pessoa/:pessoaID", (req, res) => {
 
 });
 
+app.get("/responsavel-reuniao/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN REUNIAO R ON P.PESSOA_ID = R.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
+app.get("/responsavel-evento/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN EVENTO E ON P.PESSOA_ID = E.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
+app.get("/responsavel-projeto/:pessoaID", (req, res) => {
+    let query = `SELECT NOME FROM PESSOA P INNER JOIN PROJETO PR ON P.PESSOA_ID = PR.RESPONSAVEL_ID WHERE p.PESSOA_ID = ${req.params.pessoaID}`;
+
+    db.query(query, (error, result) => {
+        res.json(result);
+    });
+});
+
 app.post("/adiciona-skill-membro/:skid/:membroid", (req, res) => {
     let query = `INSERT INTO SKILL_PESSOA VALUES (null, ${req.params.skid}, ${req.params.membroid})`;
     db.query(query, (error, result) => {

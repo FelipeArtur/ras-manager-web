@@ -15,16 +15,22 @@ export default function ProjetoView() {
             setProjeto(response.data);
         });
     }, [id]);
+    
+    const [responsavel, setResponsavel] = useState("");
+    
 
     return (
         <div className="projeto-view-card">
             <div className="projeto-card-options">
                     <Link to={"/projetos"} className="projeto-card-close">X</Link>
                 {typeof projeto !== "undefined" && projeto.map((value) => {
+                    Axios.get(`http://localhost:3001/responsavel-projeto/${value.RESPONSAVEL_ID}`).then((response) => {
+                        setResponsavel(response.data.at(0).NOME);
+                    });
                     return (<>
                         <div className="projeto-view-column">
                             <div className="selected-projeto-descricao">{value.DESCRICAO}</div>
-                            <div className="selected-projeto-responsavel">(Responsável: {value.RESPONSAVEL_ID})</div>
+                            <div className="selected-projeto-responsavel">(Responsável: {responsavel})</div>
                             <div className="selected-reuniao-status">Status: {parseProjectStatus(value.STATUS)}</div>
 
                         </div>
