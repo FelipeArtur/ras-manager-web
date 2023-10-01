@@ -31,7 +31,7 @@ export default function Login() {
     return (
             <>
                 <div className="white-container">
-                    <img src={logo} alt="RAS Logo" className="ras-logo"/>
+                    <img src={logo} alt="Logo do Manager" className="ras-logo"/>
                     <div className="input-column">
                         <CustomInput 
                         id="login-input-user" 

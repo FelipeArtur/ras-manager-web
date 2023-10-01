@@ -1,18 +1,18 @@
 .checkbox-row {
-    display: flex;
-    flex-direction: row;
-    align-content: space-around;
+	display: flex;
+	flex-direction: row;
+	align-content: space-around;
 }
 
 .custom-checkbox {
-    color: #721764;
+	color: #2e6930;
 }
 
 .custom-checkbox:checked {
-    background-color: #721764;
+	background-color: #68b5f3;
 }
 
 .habilidade-text {
-    color:grey;
-    font-size: 13px;
+	color: grey;
+	font-size: 13px;
 }

@@ -1,31 +1,31 @@
 .custom-input {
-    border-radius: 14px;
-    border-color: #721764;
-    border-width: 1px;
-    margin: 10px;
-    padding-left: 7px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    width: 75%;
-    height: 20%;
-    color: #721764;
-    font-weight: 400;
+	border-radius: 14px;
+	border-color: #2e6930;
+	border-width: 1px;
+	margin: 10px;
+	padding-left: 7px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 75%;
+	height: 20%;
+	color: #2e6930;
+	font-weight: 400;
 }
 
 .custom-input::placeholder {
-    color: #c46cb6;
+	color: #444444;
 }
 
 .custom-input::content {
-    color: #c46cb6;
+	color: #444444;
 }
 
 .custom-input::marker {
-    color: #c46cb6;
+	color: #444444;
 }
 
 .custom-input:hover {
-    border-radius: 14px;
-    border-color: purple;
-    background-color: rgb(235, 235, 235);
+	border-radius: 14px;
+	border-color: #2e6930;
+	background-color: rgb(235, 235, 235);
 }
